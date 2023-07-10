@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c667d2fea4fc8640b0da209d1a8c77f, type: 3}
   m_Name: CarData
   m_EditorClassIdentifier: 
-  highSpeed: 200
-  accelerate: 100
+  accelerate: 500
   weight: 500
   handling: 1

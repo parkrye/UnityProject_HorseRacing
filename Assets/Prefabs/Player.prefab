@@ -56,11 +56,8 @@ MonoBehaviour:
   onUseItem: 0
   onChangeItem: 0
   onFlashLight: 0
-  motorTorque: 0
-  brakeTorque: 0
-  steerAngleL: 0
-  steerAngleR: 0
-  downForce: 0
+  downForce: 100
+  brakeStiffness: 0.4
   wheelPositions: []
   wheelRotations: []
 --- !u!54 &6203619288668400212

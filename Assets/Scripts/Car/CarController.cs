@@ -10,7 +10,8 @@ public class CarController : MonoBehaviour
     [SerializeField] float fowardValue, sideValue;
     [SerializeField] bool onHandBrake, onUseItem, onChangeItem, onFlashLight;
 
-    [SerializeField] float motorTorque, brakeTorque, steerAngleL, steerAngleR, downForce;
+    [SerializeField] float downForce, brakeStiffness;
+
     [SerializeField] Vector3[] wheelPositions;
     [SerializeField] Quaternion[] wheelRotations;
 
@@ -29,27 +30,15 @@ public class CarController : MonoBehaviour
         wheelRotations = new Quaternion[4];
 
         onFlashLight = true;
-
-        StartCoroutine(URoutine());
-        StartCoroutine(FURoutine());
     }
 
-    void OnDisable()
+    void FixedUpdate()
     {
-        StopAllCoroutines();
-    }
-
-    // 이하 연산 메소드
-    IEnumerator URoutine()
-    {
-        while (true)
-        {
-            WheelPositioner();
-            DriverCacluator();
-            SteerCalculator();
-            DownForceCalculator();
-            yield return null;
-        }
+        WheelPositioner();
+        HandBrake();
+        CarDriver();
+        SteerVehicle();
+        AddDownForce();
     }
 
     void WheelPositioner()
@@ -62,87 +51,40 @@ public class CarController : MonoBehaviour
         }
     }
 
-    void DriverCacluator()
-    {
-        if (motorTorque <= carDataModel.CarData.HighSpeed && motorTorque >= -carDataModel.CarData.HighSpeed)
-            motorTorque += fowardValue * carDataModel.CarData.Accelerate * Time.deltaTime;
-        else
-            motorTorque = fowardValue * carDataModel.CarData.HighSpeed;
-
-        if ((fowardValue < 0.5f && fowardValue > -0.5f) || (fowardValue < -0.5f && motorTorque > 0f) || (fowardValue > 0.5f && motorTorque < 0f))
-            motorTorque = 0f;
-
-        if (fowardValue == 0)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                brakeTorque = fowardValue * carDataModel.CarData.Accelerate;
-            }
-        }
-        else
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                brakeTorque = 0;
-            }
-        }
-    }
-
-    void SteerCalculator()
-    {
-        if (sideValue > 0.5f)
-        {
-            steerAngleL = 28.191f * sideValue * carDataModel.CarData.Handling;
-            steerAngleR = 34.215f * sideValue * carDataModel.CarData.Handling;
-        }
-        else if (sideValue < -0.5f)
-        {
-            steerAngleL = 34.215f * sideValue * carDataModel.CarData.Handling;
-            steerAngleR = 28.191f * sideValue * carDataModel.CarData.Handling;
-        }
-        else
-        {
-            steerAngleL = 0;
-            steerAngleR = 0;
-        }
-    }
-
-    void DownForceCalculator()
-    {
-        downForce = rb.velocity.sqrMagnitude;
-    }
-
-    // 이하 물리 관여 메소드
-    IEnumerator FURoutine()
-    {
-        while (true)
-        {
-            HandBrake();
-            CarDriver();
-            SteerVehicle();
-            AddDownForce();
-            yield return new WaitForFixedUpdate();
-        }
-    }
-
     void CarDriver()
     {
         for (int i = 0; i < 4; i++)
         {
-            carDataModel.Wheels[i].motorTorque = motorTorque;
-            carDataModel.Wheels[i].brakeTorque = brakeTorque;
+            carDataModel.Wheels[i].motorTorque = fowardValue * carDataModel.CarData.Accelerate;
+            if(fowardValue == 0f)
+                carDataModel.Wheels[i].brakeTorque = carDataModel.CarData.Accelerate;
+            else
+                carDataModel.Wheels[i].brakeTorque = 0f;
         }
     }
 
     void SteerVehicle()
     {
-        carDataModel.Wheels[0].steerAngle = steerAngleL;
-        carDataModel.Wheels[1].steerAngle = steerAngleR;
+        if (sideValue > 0.5f)
+        {
+            carDataModel.Wheels[0].steerAngle = 20.695f * sideValue * carDataModel.CarData.Handling;
+            carDataModel.Wheels[1].steerAngle = 25.906f * sideValue * carDataModel.CarData.Handling;
+        }
+        else if (sideValue < -0.5f)
+        {
+            carDataModel.Wheels[0].steerAngle = 25.906f * sideValue * carDataModel.CarData.Handling;
+            carDataModel.Wheels[1].steerAngle = 20.695f * sideValue * carDataModel.CarData.Handling;
+        }
+        else
+        {
+            carDataModel.Wheels[0].steerAngle = 0;
+            carDataModel.Wheels[1].steerAngle = 0;
+        }
     }
 
     void AddDownForce()
     {
-        rb.AddForce(-transform.up * downForce);
+        rb.AddForce(-transform.up * rb.velocity.magnitude * downForce);
     }
 
     void HandBrake()
@@ -170,7 +112,7 @@ public class CarController : MonoBehaviour
         if (onHandBrake)
         {
             for (int i = 0; i < 4; i++)
-                carDataModel.WheelFrictionCurve[i].stiffness = 0.4f;
+                carDataModel.WheelFrictionCurve[i].stiffness = brakeStiffness;
         }
         else
         {
