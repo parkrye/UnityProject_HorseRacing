@@ -6,150 +6,132 @@
             "id": "c94f8142-1a5d-4efd-babc-37794c9360fe",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "SideMove",
                     "type": "Value",
-                    "id": "e0c3caa0-4efa-4c92-9e2c-534a92943a5f",
-                    "expectedControlType": "Vector2",
+                    "id": "60bd559f-e4b3-4df8-b44c-1298fb6ca9d0",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Shift",
-                    "type": "PassThrough",
-                    "id": "1cb99719-94d0-4c82-8898-a92425d37933",
-                    "expectedControlType": "Button",
+                    "name": "TurnMove",
+                    "type": "Value",
+                    "id": "4250d04b-e712-4486-8847-6fcf29bde9c2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "Control",
-                    "type": "PassThrough",
-                    "id": "f58a7977-a53f-4ca8-99b4-b7a9c61022b6",
-                    "expectedControlType": "Button",
+                    "name": "SpeedChange",
+                    "type": "Value",
+                    "id": "d87ac46e-fc79-4507-b01c-45d4f2af2ff3",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Alternative",
-                    "type": "PassThrough",
-                    "id": "e0ec3f60-bb32-424f-927e-06515f826f83",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Flash",
-                    "type": "PassThrough",
-                    "id": "2d5f3532-f0c8-44c0-a71c-9c2804d0bf88",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
-                    "name": "2D Vector",
-                    "id": "d95ef31a-a3e6-441b-9b6a-047e01ff7e7b",
-                    "path": "2DVector(mode=1)",
+                    "name": "1D Axis",
+                    "id": "5f10bb3b-97c7-4dd4-96ef-b23db7ef3fa2",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "SideMove",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "21ac5292-d82e-4fc6-9906-0c3e24eae565",
-                    "path": "<Keyboard>/upArrow",
+                    "name": "positive",
+                    "id": "e617bb18-500d-42f7-ad07-ec9c3aca1645",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "SideMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
-                    "id": "e48740c5-75fe-4d0f-a52a-942dfc279001",
-                    "path": "<Keyboard>/downArrow",
+                    "name": "negative",
+                    "id": "38c27aa5-bdd4-4a8e-9d05-7de8b46c4ea1",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "SideMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
-                    "id": "5dce0966-f545-4dcb-a87d-81fa32bc900a",
-                    "path": "<Keyboard>/leftArrow",
+                    "name": "1D Axis",
+                    "id": "a09461b4-239c-4224-a5b1-e5f35b338e19",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
+                    "action": "TurnMove",
+                    "isComposite": true,
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "right",
-                    "id": "a4b9efde-32ea-4a19-a1ff-3c4e03c70101",
+                    "name": "positive",
+                    "id": "045adc98-291d-4a73-a405-f34043292d61",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "TurnMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "33ee4cd2-8447-43c6-8d1d-8d397374a871",
-                    "path": "<Keyboard>/shift",
+                    "name": "negative",
+                    "id": "33ed83e9-6b3e-44c9-855e-4594e9ee7c9c",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shift",
+                    "action": "TurnMove",
                     "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "cfd4dcc0-69e0-4fa3-9d9c-2e7dd483eb39",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpeedChange",
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "c58c9000-1748-4931-af10-bdf748c20515",
-                    "path": "<Keyboard>/ctrl",
+                    "name": "positive",
+                    "id": "2000a832-e629-437a-af4a-19bec554e51f",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Control",
+                    "action": "SpeedChange",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "9d5357bb-a6f9-4f89-9c95-e3cb66cbdb63",
-                    "path": "<Keyboard>/alt",
+                    "name": "negative",
+                    "id": "681956f8-778f-482e-9d72-97e77e4e61f7",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Alternative",
+                    "action": "SpeedChange",
                     "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8a1d749d-ef97-42e2-894b-64c8c4635f06",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Flash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 }
             ]
         }
