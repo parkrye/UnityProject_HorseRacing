@@ -11,7 +11,6 @@ public abstract class HorseController : MonoBehaviour
     [SerializeField] protected int slipStream;
     [SerializeField] protected float leastStamina;
 
-    [SerializeField] protected int idleMotionValue;
     [SerializeField] protected float fowardAnimValue, turnAnimValue;
 
     [SerializeField] protected Vector3 moveDir;
@@ -42,13 +41,18 @@ public abstract class HorseController : MonoBehaviour
 
     protected abstract IEnumerator StaminaComsume();
 
+    protected IEnumerator ExhaustionRoutine()
+    {
+        yield return new WaitForSeconds((50 - horse.Data.intelligence) * 0.5f);
+        leastStamina = horse.Data.stamina * 0.5f;
+    }
+
     protected IEnumerator IdleMotionRoutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(5f);
-            idleMotionValue = Random.Range(0, 5);
-            horseAnimator.SetFloat("Idle", idleMotionValue);
+            horseAnimator.SetFloat("Idle", Random.Range(0, 5));
         }
     }
 

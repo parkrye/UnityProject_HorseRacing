@@ -13,7 +13,7 @@ public class Horse : MonoBehaviour
         horseData.speed = Random.Range(30, 40);
         horseData.stamina = Random.Range(20, 30);
         horseData.power = Random.Range(20, 30);
-        horseData.intelligence = Random.Range(10, 20);
+        horseData.intelligence = Random.Range(20, 30);
 
         int material = Random.Range(0, materials.Length);
         for(int i = 0; i < body.Length; i++)

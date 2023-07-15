@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AI_Horse : HorseController
 {
-    enum Strategy { Runner, Stalker, Closer }
+    enum Strategy { Runway, Front, Stalker, Closer }
     [SerializeField] Strategy strategy;
 
     [SerializeField] float wallDistance;
@@ -11,7 +11,7 @@ public class AI_Horse : HorseController
     [SerializeField] float[] steps;
     [SerializeField] int step, turn;
 
-    [SerializeField] Vector3 rotaDir, sideDir;
+    [SerializeField] Vector3 rotaDir, sideDir, turnDir;
 
     [ContextMenu("Initialize")]
     public override void Initialize()
@@ -26,20 +26,25 @@ public class AI_Horse : HorseController
         steps = new float[3];
         switch (strategy)
         {
-            case Strategy.Runner:
-                steps[0] = 0.9f;
-                steps[1] = 0.9f;
-                steps[2] = 0.7f;
+            case Strategy.Runway:
+                steps[0] = 1f;
+                steps[1] = 0.6f;
+                steps[2] = 0.4f;
+                break;
+            case Strategy.Front:
+                steps[0] = 0.8f;
+                steps[1] = 0.6f;
+                steps[2] = 0.6f;
                 break;
             case Strategy.Stalker:
-                steps[0] = 0.83f;
-                steps[1] = 0.83f;
-                steps[2] = 0.84f;
+                steps[0] = 0.6f;
+                steps[1] = 0.6f;
+                steps[2] = 0.8f;
                 break;
             case Strategy.Closer:
-                steps[0] = 0.7f;
-                steps[1] = 0.9f;
-                steps[2] = 0.9f;
+                steps[0] = 0.4f;
+                steps[1] = 0.6f;
+                steps[2] = 1f;
                 break;
         }
         slipStream = 0;
@@ -78,10 +83,11 @@ public class AI_Horse : HorseController
         RaycastHit wallHit;
 
         if (Physics.Raycast(transform.position, transform.forward, out wallHit, wallDistance, LayerMask.GetMask("Wall")))
+        {
             rotaDir = Vector3.ProjectOnPlane(transform.forward.normalized, wallHit.normal).normalized;
-        else
-            rotaDir = transform.forward.normalized;
-        rotaDir.y = transform.forward.y;
+            rotaDir.y = transform.position.y;
+        }
+        turnDir = Vector3.Lerp(transform.forward, rotaDir, Time.deltaTime);
 
         moveDir = transform.forward;
 
@@ -100,14 +106,14 @@ public class AI_Horse : HorseController
         if (Physics.Raycast(transform.position, transform.right, out RaycastHit rightHit, wallDistance, LayerMask.GetMask("Wall")))
             rightDistance = rightHit.distance;
 
-        if (leftDistance > rightDistance && rightDistance < 5f)
+        if (leftDistance > rightDistance && rightDistance < 7f)
         {
-            sideDir = -transform.right * horse.Data.intelligence * 0.5f;
+            sideDir = 0.5f * horse.Data.intelligence * -transform.right;
             turn = -1;
         }
-        else if (leftDistance < rightDistance && leftDistance < 5f)
+        else if (leftDistance < rightDistance && leftDistance < 7f)
         {
-            sideDir = transform.right * horse.Data.intelligence * 0.5f;
+            sideDir = 0.5f * horse.Data.intelligence * transform.right;
             turn = 1;
         }
         else
@@ -128,6 +134,10 @@ public class AI_Horse : HorseController
                 fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.7f, Time.deltaTime);
             else if (steps[step] >= 0.7f)
                 fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.5f, Time.deltaTime);
+            else if (steps[step] >= 0.6f)
+                fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.3f, Time.deltaTime);
+            else if (steps[step] >= 0.4f)
+                fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.1f, Time.deltaTime);
             else
                 fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0f, Time.deltaTime);
         }
@@ -137,10 +147,9 @@ public class AI_Horse : HorseController
             riderAnimator.SetBool("Run", false);
         }
 
-
-        if (turn > 0f)
+        if (turn > 0)
             turnAnimValue = Mathf.Lerp(turnAnimValue, 1f, Time.deltaTime);
-        else if (turn < 0f)
+        else if (turn < 0)
             turnAnimValue = Mathf.Lerp(turnAnimValue, -1f, Time.deltaTime);
         else
             turnAnimValue = Mathf.Lerp(turnAnimValue, 0f, Time.deltaTime);
@@ -157,20 +166,14 @@ public class AI_Horse : HorseController
         while (true)
         {
             Move();
-            SideMove();
             yield return new WaitForFixedUpdate();
         }
     }
 
     void Move()
     {
-        rb.AddForce(moveDir, ForceMode.Acceleration);
-        transform.LookAt(Vector3.Lerp(transform.position + transform.forward, transform.position + rotaDir, Time.deltaTime));
-    }
-
-    void SideMove()
-    {
-        rb.AddForce(sideDir, ForceMode.Acceleration);
+        rb.AddForce(moveDir + sideDir, ForceMode.Acceleration);
+        transform.LookAt(turnDir + transform.position);
     }
 
     protected override IEnumerator StaminaComsume()
@@ -180,12 +183,17 @@ public class AI_Horse : HorseController
         while (true)
         {
             float consume = (horse.Data.speed * steps[step] - horse.Data.intelligence * 0.5f) * 0.015f;
+            if (turn != 0)
+                consume += horse.Data.speed * 0.01f;
             consume = (consume < 0.1f ? 0.1f : consume);
             if (slipStream > 0)
                 consume *= 0.5f;
             leastStamina -= consume;
             if (leastStamina < 0f)
+            {
+                StartCoroutine(ExhaustionRoutine());
                 leastStamina = 0f;
+            }
             yield return new WaitForSeconds(1f);
         }
     }
@@ -202,5 +210,7 @@ public class AI_Horse : HorseController
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position + transform.up, transform.position + transform.forward * wallDistance + transform.up);
+        Gizmos.DrawLine(transform.position + transform.up, transform.position + transform.right * wallDistance + transform.up);
+        Gizmos.DrawLine(transform.position + transform.up, transform.position - transform.right * wallDistance + transform.up);
     }
 }
