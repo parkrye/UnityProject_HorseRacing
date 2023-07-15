@@ -55,7 +55,7 @@ public class AI_Horse : HorseController
 
     protected override IEnumerator StartDash()
     {
-        yield return new WaitForSeconds(Random.Range(0f, (40f - horse.Data.intelligence) * 0.1f));
+        yield return new WaitForSeconds(Random.Range(0f, (20f - horse.Data.intelligence) * 0.1f));
         start = true;
     }
 
@@ -121,6 +121,7 @@ public class AI_Horse : HorseController
     {
         if (leastStamina > 0f)
         {
+            riderAnimator.SetBool("Run", true);
             if (steps[step] >= 0.9f)
                 fowardAnimValue = Mathf.Lerp(fowardAnimValue, 1f, Time.deltaTime);
             else if (steps[step] >= 0.8f)
@@ -131,7 +132,10 @@ public class AI_Horse : HorseController
                 fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0f, Time.deltaTime);
         }
         else
-            fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0f, Time.deltaTime);
+        {
+            fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.1f, Time.deltaTime);
+            riderAnimator.SetBool("Run", false);
+        }
 
 
         if (turn > 0f)
@@ -141,8 +145,8 @@ public class AI_Horse : HorseController
         else
             turnAnimValue = Mathf.Lerp(turnAnimValue, 0f, Time.deltaTime);
 
-        animator.SetFloat("Foward", fowardAnimValue);
-        animator.SetFloat("Side", turnAnimValue);
+        horseAnimator.SetFloat("Foward", fowardAnimValue);
+        horseAnimator.SetFloat("Side", turnAnimValue);
     }
 
     protected override IEnumerator FRoutine()

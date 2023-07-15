@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342471865892174}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Tail03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,8 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342471894628752}
-  - component: {fileID: 2531342471894628759}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,20 +64,6 @@ Transform:
   m_Father: {fileID: 2531342473381576307}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2531342471894628759
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531342471894628753}
-  m_Material: {fileID: 13400000, guid: 54174b87a6301064ea8788686f85bda8, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.29459772
-  m_Height: 0.6415338
-  m_Direction: 0
-  m_Center: {x: -0.0242331, y: 0.055402327, z: 0.0000000013751666}
 --- !u!1 &2531342471926492808
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342471926492815}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Track LT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342471949079766}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: L Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342471954807405}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: CG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342471965969742}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Reins_Bn_Neck_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342471974563037}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Reins_Bn_Head_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +233,7 @@ GameObject:
   - component: {fileID: 2632612255990093909}
   - component: {fileID: 2531342472050109786}
   - component: {fileID: 1615062333592537984}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Horse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,8 +305,8 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a01d7871a3c6bd94a86a6e01e19fc9fe, type: 3}
   m_Controller: {fileID: 9100000, guid: 68d41a85f3c1f384ebc0383ba59fb67a, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 1
+  m_CullingMode: 0
+  m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -352,8 +337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472083160687}
-  - component: {fileID: 2531342472083160686}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: L UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,20 +360,6 @@ Transform:
   m_Father: {fileID: 2531342472928015908}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2531342472083160686
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531342472083160680}
-  m_Material: {fileID: 13400000, guid: 54174b87a6301064ea8788686f85bda8, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.07255837
-  m_Height: 0.57272345
-  m_Direction: 0
-  m_Center: {x: -0.21143593, y: -0.0005411795, z: 0.00295249}
 --- !u!1 &2531342472123269802
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472123269801}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: R Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472159174701}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: L Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -463,7 +433,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472207559756}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Tail02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +465,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472245509770}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: R HorseLink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2531342472248679491}
   - component: {fileID: 2531342472248679490}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Horse Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,7 +584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2531342472249864318}
   - component: {fileID: 2531342472249864317}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Horse Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +604,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2531342473177628781}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2531342472249864317
 SkinnedMeshRenderer:
@@ -703,7 +673,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472253612711}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: R Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472298492446}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: R Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,7 +737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472499782561}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Reins_Bn_Hand_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -798,7 +768,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472589874842}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Tail01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -830,7 +800,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472591315042}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Ear L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -861,7 +831,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472620623607}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Ear R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -892,7 +862,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472622770029}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: R Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -924,7 +894,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472653132443}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Tail05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -955,8 +925,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472653795623}
-  - component: {fileID: 2531342472653795622}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,20 +949,6 @@ Transform:
   m_Father: {fileID: 2531342471894628752}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2531342472653795622
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531342472653795616}
-  m_Material: {fileID: 13400000, guid: 54174b87a6301064ea8788686f85bda8, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 0.77
-  m_Direction: 0
-  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!1 &2531342472662426722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,7 +959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2531342472662426721}
   - component: {fileID: 2531342472662426720}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Horse Body Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1024,7 +979,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2531342473177628781}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2531342472662426720
 SkinnedMeshRenderer:
@@ -1121,7 +1076,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472688440887}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1152,7 +1107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472698378355}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Reins_Bn_Head_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1183,7 +1138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472734434980}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: L Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1215,7 +1170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472749747667}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1238,101 +1193,6 @@ Transform:
   m_Father: {fileID: 2531342471949079766}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2531342472873756762
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2531342472873756761}
-  - component: {fileID: 2531342472873756760}
-  m_Layer: 20
-  m_Name: Horse Mane1 Low
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2531342472873756761
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531342472873756762}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2531342473177628781}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &2531342472873756760
-SkinnedMeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531342472873756762}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 4294967295
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 5843bf7ee1a93374f961f5f39da832f2, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 4
-  m_UpdateWhenOffscreen: 1
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300036, guid: a01d7871a3c6bd94a86a6e01e19fc9fe, type: 3}
-  m_Bones:
-  - {fileID: 2531342473010068609}
-  - {fileID: 2531342472994714222}
-  - {fileID: 2531342472950516479}
-  - {fileID: 2531342472928015908}
-  - {fileID: 2531342473166889075}
-  - {fileID: 2531342472653795623}
-  - {fileID: 2531342471894628752}
-  - {fileID: 2531342473434766237}
-  - {fileID: 2531342473782194715}
-  - {fileID: 2531342472591315042}
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 2531342471894628752}
-  m_AABB:
-    m_Center: {x: -1.0478147, y: -0.5414601, z: 0.12181994}
-    m_Extent: {x: 0.47999024, y: 0.5170154, z: 0.15460405}
-  m_DirtyAABB: 0
 --- !u!1 &2531342472894251530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,7 +1203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2531342472894251529}
   - component: {fileID: 2531342472894251528}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Saddle Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1363,7 +1223,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2531342473177628781}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2531342472894251528
 SkinnedMeshRenderer:
@@ -1439,7 +1299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472928015908}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: L Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1471,7 +1331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472928519800}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1502,8 +1362,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472950516479}
-  - component: {fileID: 2531342472950516478}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1526,20 +1385,6 @@ Transform:
   m_Father: {fileID: 2531342473010068609}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2531342472950516478
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531342472950516472}
-  m_Material: {fileID: 13400000, guid: 54174b87a6301064ea8788686f85bda8, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.16368882
-  m_Height: 0.50286615
-  m_Direction: 0
-  m_Center: {x: -0.21376984, y: -0.041525275, z: -0.00000001666002}
 --- !u!1 &2531342472982916623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,7 +1394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472982916622}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: L Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,7 +1426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342472994714222}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Neck1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1615,8 +1460,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473010068609}
-  - component: {fileID: 2531342473010068608}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1645,20 +1489,6 @@ Transform:
   m_Father: {fileID: 2531342472653795623}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2531342473010068608
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531342473010068610}
-  m_Material: {fileID: 13400000, guid: 54174b87a6301064ea8788686f85bda8, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.29
-  m_Height: 0.83
-  m_Direction: 0
-  m_Center: {x: -0.1, y: 0.05, z: 0}
 --- !u!1 &2531342473019954213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,7 +1498,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473019954212}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Track LF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1699,7 +1529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473031098400}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: L Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1731,7 +1561,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473074272998}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Reins_Bn_Hand_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1762,7 +1592,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473096796811}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: R Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1794,7 +1624,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473101066252}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: L HorseLink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1827,7 +1657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2531342473138286457}
   - component: {fileID: 2531342473138286456}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Horse Tail Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1847,7 +1677,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2531342473177628781}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2531342473138286456
 SkinnedMeshRenderer:
@@ -1916,8 +1746,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473150597846}
-  - component: {fileID: 2531342473150597845}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: R UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1940,20 +1769,6 @@ Transform:
   m_Father: {fileID: 2531342473371254398}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2531342473150597845
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531342473150597847}
-  m_Material: {fileID: 13400000, guid: 54174b87a6301064ea8788686f85bda8, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.07255837
-  m_Height: 0.57272345
-  m_Direction: 0
-  m_Center: {x: -0.21143593, y: -0.0005411795, z: -0.00295249}
 --- !u!1 &2531342473166889068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,7 +1778,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473166889075}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Neck2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1995,7 +1810,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473177628781}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Meshes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2016,14 +1831,12 @@ Transform:
   m_Children:
   - {fileID: 2531342473190182527}
   - {fileID: 2531342472248679491}
-  - {fileID: 2531342473610478409}
   - {fileID: 2531342472249864318}
   - {fileID: 2531342473855944147}
   - {fileID: 2531342473545668437}
   - {fileID: 2531342472662426721}
   - {fileID: 2531342472894251529}
   - {fileID: 2531342473429710661}
-  - {fileID: 2531342472873756761}
   - {fileID: 2531342473138286457}
   m_Father: {fileID: 2531342472050109784}
   m_RootOrder: 1
@@ -2038,7 +1851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2531342473190182527}
   - component: {fileID: 2531342473190182526}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Horse Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2156,7 +1969,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473371254398}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: R Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2188,7 +2001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473381576307}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2224,7 +2037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2531342473429710661}
   - component: {fileID: 2531342473429710660}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Reins Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2244,7 +2057,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2531342473177628781}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2531342473429710660
 SkinnedMeshRenderer:
@@ -2313,9 +2126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473434766237}
-  - component: {fileID: 2531342473434766307}
-  - component: {fileID: 2531342473434766236}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2342,34 +2153,6 @@ Transform:
   m_Father: {fileID: 2531342473166889075}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2531342473434766307
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531342473434766238}
-  m_Material: {fileID: 13400000, guid: 54174b87a6301064ea8788686f85bda8, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.103611305
-  m_Height: 0.41615933
-  m_Direction: 1
-  m_Center: {x: 0.009370575, y: 0.35434678, z: -0.000000017284158}
---- !u!136 &2531342473434766236
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531342473434766238}
-  m_Material: {fileID: 13400000, guid: 54174b87a6301064ea8788686f85bda8, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.1445783
-  m_Height: 0.4830551
-  m_Direction: 1
-  m_Center: {x: 0.007469826, y: 0.15016244, z: -0.000000009006526}
 --- !u!1 &2531342473446192296
 GameObject:
   m_ObjectHideFlags: 0
@@ -2379,7 +2162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473446192303}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Reins_Bn_Neck_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2410,7 +2193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473528199279}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Track RF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2442,7 +2225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2531342473545668437}
   - component: {fileID: 2531342473545668436}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Saddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2462,7 +2245,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2531342473177628781}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2531342473545668436
 SkinnedMeshRenderer:
@@ -2536,7 +2319,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473588845953}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: R Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2559,102 +2342,6 @@ Transform:
   m_Father: {fileID: 2531342472245509770}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2531342473610478410
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2531342473610478409}
-  - component: {fileID: 2531342473610478408}
-  m_Layer: 20
-  m_Name: Horse Mane
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2531342473610478409
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531342473610478410}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2531342473177628781}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &2531342473610478408
-SkinnedMeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531342473610478410}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 4294967295
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 176cfb6d4058ef34fbee8c551db71001, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 4
-  m_UpdateWhenOffscreen: 1
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300020, guid: a01d7871a3c6bd94a86a6e01e19fc9fe, type: 3}
-  m_Bones:
-  - {fileID: 2531342473010068609}
-  - {fileID: 2531342472653795623}
-  - {fileID: 2531342472994714222}
-  - {fileID: 2531342472950516479}
-  - {fileID: 2531342472928015908}
-  - {fileID: 2531342471894628752}
-  - {fileID: 2531342473166889075}
-  - {fileID: 2531342473434766237}
-  - {fileID: 2531342472620623607}
-  - {fileID: 2531342472591315042}
-  - {fileID: 2531342473782194715}
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 2531342471894628752}
-  m_AABB:
-    m_Center: {x: -0.14195064, y: -0.8252723, z: 1.5826585}
-    m_Extent: {x: 0.18479505, y: 0.44092226, z: 0.37697983}
-  m_DirtyAABB: 0
 --- !u!1 &2531342473638411257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2664,7 +2351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473638411256}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Track RT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2695,7 +2382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473651591591}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: L Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2727,7 +2414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473772682468}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Tail04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2759,7 +2446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473782194715}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Jaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2790,7 +2477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2531342473796566988}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: R Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2823,7 +2510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2531342473855944147}
   - component: {fileID: 2531342473855944146}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Reins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2843,7 +2530,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2531342473177628781}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2531342473855944146
 SkinnedMeshRenderer:
@@ -2913,7 +2600,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3071450244713839536}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: HumanPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2927,8 +2614,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2823896575052922913}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: -0.1, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

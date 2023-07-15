@@ -59,18 +59,25 @@ public class PlayerController : HorseController
 
     protected override void SetAnimatiton()
     {
-        if(nowFowardSpeedValue >= horse.Data.speed)
-            fowardAnimValue = Mathf.Lerp(fowardAnimValue, 1f, Time.deltaTime);
-        else if(nowFowardSpeedValue >= horse.Data.speed * 0.7f)
-            fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.7f, Time.deltaTime);
-        else if(nowFowardSpeedValue >= horse.Data.speed * 0.5f)
-            fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.5f, Time.deltaTime);
-        else if(nowFowardSpeedValue >= horse.Data.speed * 0.3f)
-            fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.3f, Time.deltaTime);
-        else if (nowFowardSpeedValue >= horse.Data.speed * 0.1f)
-            fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.1f, Time.deltaTime);
+        if(nowFowardSpeedValue >= horse.Data.speed * 0.1f)
+        {
+            riderAnimator.SetBool("Run", true);
+            if (nowFowardSpeedValue >= horse.Data.speed)
+                fowardAnimValue = Mathf.Lerp(fowardAnimValue, 1f, Time.deltaTime);
+            else if (nowFowardSpeedValue >= horse.Data.speed * 0.7f)
+                fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.7f, Time.deltaTime);
+            else if (nowFowardSpeedValue >= horse.Data.speed * 0.5f)
+                fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.5f, Time.deltaTime);
+            else if (nowFowardSpeedValue >= horse.Data.speed * 0.3f)
+                fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.3f, Time.deltaTime);
+            else
+                fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.1f, Time.deltaTime);
+        }
         else
+        {
+            riderAnimator.SetBool("Run", false);
             fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0f, Time.deltaTime);
+        }
 
         if(turnInput > 0f)
             turnAnimValue = Mathf.Lerp(turnAnimValue, 1f, Time.deltaTime);
@@ -79,8 +86,8 @@ public class PlayerController : HorseController
         else
             turnAnimValue = Mathf.Lerp(turnAnimValue, 0f, Time.deltaTime);
 
-        animator.SetFloat("Foward", fowardAnimValue);
-        animator.SetFloat("Side", turnAnimValue);
+        horseAnimator.SetFloat("Foward", fowardAnimValue);
+        horseAnimator.SetFloat("Side", turnAnimValue);
     }
 
     protected override IEnumerator FRoutine()

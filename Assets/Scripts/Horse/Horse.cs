@@ -10,10 +10,10 @@ public class Horse : MonoBehaviour
     [ContextMenu("Initialize")]
     public void Initialize()
     {
-        horseData.speed = Random.Range(30, 50);
-        horseData.stamina = Random.Range(20, 40);
-        horseData.power = Random.Range(20, 40);
-        horseData.intelligence = Random.Range(10, 30);
+        horseData.speed = Random.Range(30, 40);
+        horseData.stamina = Random.Range(20, 30);
+        horseData.power = Random.Range(20, 30);
+        horseData.intelligence = Random.Range(10, 20);
 
         int material = Random.Range(0, materials.Length);
         for(int i = 0; i < body.Length; i++)

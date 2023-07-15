@@ -5,7 +5,7 @@ public abstract class HorseController : MonoBehaviour
 {
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected Horse horse;
-    [SerializeField] protected Animator animator;
+    [SerializeField] protected Animator horseAnimator, riderAnimator;
     [SerializeField] protected CompetitionChecker leftChecker, rightChecker;
 
     [SerializeField] protected int slipStream;
@@ -48,7 +48,7 @@ public abstract class HorseController : MonoBehaviour
         {
             yield return new WaitForSeconds(5f);
             idleMotionValue = Random.Range(0, 5);
-            animator.SetFloat("Idle", idleMotionValue);
+            horseAnimator.SetFloat("Idle", idleMotionValue);
         }
     }
 
