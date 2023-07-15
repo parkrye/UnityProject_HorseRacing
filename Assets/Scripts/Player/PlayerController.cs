@@ -2,50 +2,37 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : HorseController
 {
-    [SerializeField] Rigidbody rb;
-    [SerializeField] Animator animator;
-
-    [SerializeField] Horse horse;
-
     [Header("Movement Values")]
-    [SerializeField] Vector3 moveDir;
     [SerializeField] float sideInput, turnInput, speedInput;
     [SerializeField] float nowFowardSpeedValue, nowSideSpeedValue, nowTurnValue;
     [SerializeField] float sideMoveModifier, turnModifier;
 
-    [Header("Animation Values")]
-    [SerializeField] int idleMotionValue;
-    [SerializeField] float fowardAnimValue, turnAnimValue;
-
-
     [ContextMenu("Initialize")]
-    public void Initialize()
+    public override void Initialize()
     {
-        StartCoroutine(IdleMotionRoutine());
-        StatMove();
+        leastStamina = horse.Data.stamina;
+        base.Initialize();
     }
 
-    public void StatMove()
+    protected override void StartMove()
     {
-        StartDash();
-
-        StartCoroutine(URoutine());
-        StartCoroutine(FRoutine());
+        base.StartMove();
     }
 
-    void StartDash()
+    protected override IEnumerator StartDash()
     {
-        nowFowardSpeedValue += horse.Data.power * 0.5f;
+        yield return null;
+        nowFowardSpeedValue += horse.Data.power * horse.Data.intelligence * 0.1f;
     }
 
-    IEnumerator URoutine()
+    protected override IEnumerator URoutine()
     {
         while (true)
         {
             CalcMoveData();
-            CalcAnimation();
+            SetAnimatiton();
             yield return null;
         }
     }
@@ -63,62 +50,40 @@ public class PlayerController : MonoBehaviour
         }
 
         if (sideInput != 0f)
-        {
             nowSideSpeedValue = horse.Data.power * sideMoveModifier * sideInput;
-        }
         else
-        {
             nowSideSpeedValue = 0f;
-        }
 
         moveDir = transform.forward * nowFowardSpeedValue + transform.right * nowSideSpeedValue;
     }
 
-    void CalcAnimation()
+    protected override void SetAnimatiton()
     {
         if(nowFowardSpeedValue >= horse.Data.speed)
-        {
             fowardAnimValue = Mathf.Lerp(fowardAnimValue, 1f, Time.deltaTime);
-        }
         else if(nowFowardSpeedValue >= horse.Data.speed * 0.7f)
-        {
             fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.7f, Time.deltaTime);
-        }
         else if(nowFowardSpeedValue >= horse.Data.speed * 0.5f)
-        {
             fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.5f, Time.deltaTime);
-        }
         else if(nowFowardSpeedValue >= horse.Data.speed * 0.3f)
-        {
             fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.3f, Time.deltaTime);
-        }
         else if (nowFowardSpeedValue >= horse.Data.speed * 0.1f)
-        {
             fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.1f, Time.deltaTime);
-        }
         else
-        {
             fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0f, Time.deltaTime);
-        }
 
         if(turnInput > 0f)
-        {
             turnAnimValue = Mathf.Lerp(turnAnimValue, 1f, Time.deltaTime);
-        }
         else if(turnInput < 0f)
-        {
             turnAnimValue = Mathf.Lerp(turnAnimValue, -1f, Time.deltaTime);
-        }
         else
-        {
             turnAnimValue = Mathf.Lerp(turnAnimValue, 0f, Time.deltaTime);
-        }
 
         animator.SetFloat("Foward", fowardAnimValue);
         animator.SetFloat("Side", turnAnimValue);
     }
 
-    IEnumerator FRoutine()
+    protected override IEnumerator FRoutine()
     {
         while(true) 
         {
@@ -129,17 +94,22 @@ public class PlayerController : MonoBehaviour
 
     void MoveHorse()
     {
-        rb.AddForce(moveDir, ForceMode.Force);
+        rb.AddForce(moveDir, ForceMode.Acceleration);
         transform.Rotate(turnInput * turnModifier * Vector3.up);
     }
 
-    IEnumerator IdleMotionRoutine()
+    protected override IEnumerator StaminaComsume()
     {
         while (true)
         {
-            yield return new WaitForSeconds(5f);
-            idleMotionValue = Random.Range(0, 5);
-            animator.SetFloat("Idle", idleMotionValue);
+            float consume = (nowFowardSpeedValue + nowSideSpeedValue - horse.Data.intelligence * 0.5f) * 0.02f;
+            consume = (consume < 0.1f ? 0.1f : consume);
+            if (slipStream > 0)
+                consume *= 0.5f;
+            leastStamina -= consume;
+            if (leastStamina < 0f)
+                leastStamina = 0f;
+            yield return new WaitForSeconds(1f);
         }
     }
 

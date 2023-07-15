@@ -247,10 +247,10 @@ GameObject:
   - component: {fileID: 2531342472050109784}
   - component: {fileID: 2632612255990093909}
   - component: {fileID: 2531342472050109786}
-  - component: {fileID: 2531342472050109780}
+  - component: {fileID: 1615062333592537984}
   m_Layer: 20
   m_Name: Horse
-  m_TagString: Animal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,6 +289,7 @@ MonoBehaviour:
     speed: 0
     stamina: 0
     power: 0
+    intelligence: 0
   materials:
   - {fileID: 2100000, guid: 48a3ff7d81b735a47aaa910a8a1df49f, type: 2}
   - {fileID: 2100000, guid: c30e93411f145e04b83e5b4fe8b38fe8, type: 2}
@@ -329,7 +330,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &2531342472050109780
+--- !u!65 &1615062333592537984
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -341,7 +342,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 2.5}
-  m_Center: {x: 0, y: 1, z: 0.75}
+  m_Center: {x: 0, y: 1, z: 0.6}
 --- !u!1 &2531342472083160680
 GameObject:
   m_ObjectHideFlags: 0

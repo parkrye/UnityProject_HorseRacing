@@ -48,17 +48,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48abfdd1119cdb84b801ab47defa2642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 6203619288668400212}
+  horse: {fileID: 0}
   animator: {fileID: 0}
-  model:
-    horseName: 
-    speed: 0
-    stamina: 0
-    power: 0
-    intelligence: 0
-  speed: 0
-  angle: 0
-  totalSpeed: 0
+  leftChecker: {fileID: 0}
+  rightChecker: {fileID: 0}
+  slipStream: 0
+  leastStamina: 0
+  moveDir: {x: 0, y: 0, z: 0}
+  sideInput: 0
+  turnInput: 0
+  speedInput: 0
+  nowFowardSpeedValue: 0
+  nowSideSpeedValue: 0
+  nowTurnValue: 0
+  sideMoveModifier: 0
+  turnModifier: 0
+  leastStamina: 0
+  idleMotionValue: 0
+  fowardAnimValue: 0
+  turnAnimValue: 0
+  slipStream: 0
 --- !u!54 &6203619288668400212
 Rigidbody:
   m_ObjectHideFlags: 0
