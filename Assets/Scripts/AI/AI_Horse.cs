@@ -28,22 +28,22 @@ public class AI_Horse : HorseController
         {
             case Strategy.Runway:
                 steps[0] = 1f;
-                steps[1] = 0.6f;
-                steps[2] = 0.4f;
+                steps[1] = 0.95f;
+                steps[2] = 0.85f;
                 break;
             case Strategy.Front:
-                steps[0] = 0.8f;
-                steps[1] = 0.6f;
-                steps[2] = 0.6f;
+                steps[0] = 0.9f;
+                steps[1] = 0.9f;
+                steps[2] = 0.95f;
                 break;
             case Strategy.Stalker:
-                steps[0] = 0.6f;
-                steps[1] = 0.6f;
-                steps[2] = 0.8f;
+                steps[0] = 0.85f;
+                steps[1] = 0.95f;
+                steps[2] = 1f;
                 break;
             case Strategy.Closer:
-                steps[0] = 0.4f;
-                steps[1] = 0.6f;
+                steps[0] = 0.8f;
+                steps[1] = 1f;
                 steps[2] = 1f;
                 break;
         }
@@ -182,13 +182,14 @@ public class AI_Horse : HorseController
             yield return null;
         while (true)
         {
-            float consume = (horse.Data.speed * steps[step] - horse.Data.intelligence * 0.5f) * 0.015f;
+            float consume = (horse.Data.speed * steps[step] * steps[step] - horse.Data.intelligence * 0.5f) * 0.015f;
             if (turn != 0)
                 consume += horse.Data.speed * 0.01f;
             consume = (consume < 0.1f ? 0.1f : consume);
             if (slipStream > 0)
                 consume *= 0.5f;
             leastStamina -= consume;
+            Debug.Log($"{strategy} consume {consume}, Least {leastStamina}");
             if (leastStamina < 0f)
             {
                 StartCoroutine(ExhaustionRoutine());

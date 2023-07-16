@@ -10,6 +10,7 @@ public abstract class HorseController : MonoBehaviour
 
     [SerializeField] protected int slipStream;
     [SerializeField] protected float leastStamina;
+    [SerializeField] protected bool exhaustion;
 
     [SerializeField] protected float fowardAnimValue, turnAnimValue;
 
@@ -43,8 +44,13 @@ public abstract class HorseController : MonoBehaviour
 
     protected IEnumerator ExhaustionRoutine()
     {
-        yield return new WaitForSeconds((50 - horse.Data.intelligence) * 0.5f);
-        leastStamina = horse.Data.stamina * 0.5f;
+        if (!exhaustion)
+        {
+            exhaustion = true;
+            yield return new WaitForSeconds((60 - horse.Data.intelligence));
+            leastStamina = horse.Data.stamina * 0.5f;
+            exhaustion = false;
+        }
     }
 
     protected IEnumerator IdleMotionRoutine()
