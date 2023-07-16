@@ -3,10 +3,10 @@ using UnityEngine;
 
 public abstract class HorseController : MonoBehaviour
 {
+    [Header ("Horse Controller")]
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected Horse horse;
     [SerializeField] protected Animator horseAnimator, riderAnimator;
-    [SerializeField] protected CompetitionChecker leftChecker, rightChecker;
 
     [SerializeField] protected int slipStream;
     [SerializeField] protected float leastStamina;
@@ -60,6 +60,24 @@ public abstract class HorseController : MonoBehaviour
             yield return new WaitForSeconds(5f);
             horseAnimator.SetFloat("Idle", Random.Range(0, 5));
         }
+    }
+
+    public void OnCollideEvent(AI_Horse target)
+    {
+        float selfPower = Random.Range(0f, horse.Data.power);
+        float targetPower = Random.Range(0f, target.horse.Data.power);
+
+        Vector3 selfDir = (transform.position - target.transform.position).normalized;
+        Vector3 targetDir = -selfDir;
+
+        CompetitionMove(selfDir, selfPower);
+        target.CompetitionMove(targetDir, targetPower);
+    }
+
+    public void CompetitionMove(Vector3 dir, float power)
+    {
+        rb.AddForce(dir * power, ForceMode.Acceleration);
+        leastStamina -= Time.deltaTime;
     }
 
     void OnTriggerEnter(Collider other)
