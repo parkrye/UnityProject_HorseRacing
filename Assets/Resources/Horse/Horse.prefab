@@ -231,7 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2531342472050109784}
   - component: {fileID: 2632612255990093909}
-  - component: {fileID: 2531342472050109786}
+  - component: {fileID: 5878031063493756146}
   - component: {fileID: 1615062333592537984}
   m_Layer: 0
   m_Name: Horse
@@ -294,7 +294,7 @@ MonoBehaviour:
   - {fileID: 2531342473545668436}
   - {fileID: 2531342472894251528}
   - {fileID: 2531342473429710660}
---- !u!95 &2531342472050109786
+--- !u!95 &5878031063493756146
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0

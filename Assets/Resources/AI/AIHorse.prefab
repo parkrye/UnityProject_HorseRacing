@@ -300,7 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3856576855632163113}
   horse: {fileID: 5924742085400676224}
-  horseAnimator: {fileID: 6165746740270707343}
+  horseAnimator: {fileID: 2820086198909639463}
   riderAnimator: {fileID: 7438950742507414888}
   slipStream: 0
   leastStamina: 0
@@ -310,6 +310,7 @@ MonoBehaviour:
   moveDir: {x: 0, y: 0, z: 0}
   fewerWayChecker: {fileID: 3664341123928722993}
   strategy: 0
+  drawGizmo: 0
   wallDistance: 0
   start: 0
   steps: []
@@ -321,9 +322,9 @@ MonoBehaviour:
   rotaDir: {x: 0, y: 0, z: 0}
   sideDir: {x: 0, y: 0, z: 0}
   turnDir: {x: 0, y: 0, z: 0}
-  leftFOV: {x: 0, y: 0, z: 0}
-  fowardFOV: {x: 0, y: 0, z: 0}
-  rightFOV: {x: 0, y: 0, z: 0}
+  leftSight: {x: 0, y: 0, z: 0}
+  fowardSight: {x: 0, y: 0, z: 0}
+  rightSight: {x: 0, y: 0, z: 0}
 --- !u!54 &3856576855632163113
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -527,6 +528,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fcd60e89c563e84b94211bd64a1fdb1, type: 3}
+--- !u!95 &2820086198909639463 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5878031063493756146, guid: 7fcd60e89c563e84b94211bd64a1fdb1, type: 3}
+  m_PrefabInstance: {fileID: 8552339468587917269}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5924742085400676224 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2632612255990093909, guid: 7fcd60e89c563e84b94211bd64a1fdb1, type: 3}
@@ -541,11 +547,6 @@ MonoBehaviour:
 --- !u!4 &6165746740270707341 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2531342472050109784, guid: 7fcd60e89c563e84b94211bd64a1fdb1, type: 3}
-  m_PrefabInstance: {fileID: 8552339468587917269}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &6165746740270707343 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2531342472050109786, guid: 7fcd60e89c563e84b94211bd64a1fdb1, type: 3}
   m_PrefabInstance: {fileID: 8552339468587917269}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6642801574924526693 stripped
