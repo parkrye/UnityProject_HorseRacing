@@ -34,20 +34,20 @@ public class AI_Horse : HorseController
             case Strategy.Runway:
                 steps[0] = 1f;
                 steps[1] = 0.95f;
-                steps[2] = 0.85f;
+                steps[2] = 1f;
                 break;
             case Strategy.Front:
-                steps[0] = 0.9f;
+                steps[0] = 0.95f;
                 steps[1] = 0.9f;
-                steps[2] = 0.95f;
+                steps[2] = 1f;
                 break;
             case Strategy.Stalker:
-                steps[0] = 0.85f;
+                steps[0] = 0.9f;
                 steps[1] = 0.95f;
                 steps[2] = 1f;
                 break;
             case Strategy.Closer:
-                steps[0] = 0.8f;
+                steps[0] = 0.85f;
                 steps[1] = 1f;
                 steps[2] = 1f;
                 break;
@@ -55,10 +55,11 @@ public class AI_Horse : HorseController
         slipStream = 0;
         wallDistance = horse.Data.intelligence;
         leastStamina = horse.Data.stamina;
+        horse.RestartAnimator();
         start = false;
     }
 
-    protected override void StartMove()
+    public override void StartMove()
     {
         base.StartMove();
     }

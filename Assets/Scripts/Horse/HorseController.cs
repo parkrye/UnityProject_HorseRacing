@@ -5,7 +5,7 @@ public abstract class HorseController : MonoBehaviour
 {
     [Header ("Horse Controller")]
     [SerializeField] protected Rigidbody rb;
-    [SerializeField] protected Horse horse;
+    [SerializeField] public Horse horse;
     [SerializeField] protected Animator horseAnimator, riderAnimator;
 
     [SerializeField] protected int slipStream;
@@ -13,6 +13,8 @@ public abstract class HorseController : MonoBehaviour
     [SerializeField] protected bool exhaustion;
 
     [SerializeField] protected float fowardAnimValue, turnAnimValue;
+    [SerializeField] public float rankWeight;
+    [SerializeField] public RankCheckerZone rankZone;
 
     [SerializeField] protected Vector3 moveDir;
 
@@ -20,10 +22,9 @@ public abstract class HorseController : MonoBehaviour
     public virtual void Initialize()
     {
         StartCoroutine(IdleMotionRoutine());
-        StartMove();
     }
 
-    protected virtual void StartMove()
+    public virtual void StartMove()
     {
         StartCoroutine(StartDash());
 

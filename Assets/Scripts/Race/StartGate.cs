@@ -1,20 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StartGate : MonoBehaviour
 {
-    [SerializeField] List<Horse> horseList;
-    [SerializeField] List<AI_Horse> aiList;
+    [SerializeField] RaceController raceController;
     [SerializeField] float delayTime;
 
-    void Awake()
-    {
-        horseList = new List<Horse>();
-        aiList = new List<AI_Horse>();
-    }
-
-    void Start()
+    public void Initialize()
     {
         StartCoroutine(StartRace());
     }
@@ -22,22 +14,12 @@ public class StartGate : MonoBehaviour
     IEnumerator StartRace()
     {
         yield return null;
-        for (int i = 0; i < horseList.Count; i++)
-            horseList[i].Initialize();
+        for (int i = 0; i < raceController.Horses.Count; i++)
+            raceController.Horses[i].horse.Initialize();
+        for (int i = 0; i < raceController.Horses.Count; i++)
+            raceController.Horses[i].Initialize();
         yield return new WaitForSeconds(Random.Range(delayTime * 0.5f, delayTime * 2f));
-        for(int i = 0; i < aiList.Count; i++)
-            aiList[i].Initialize();
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        Horse horse = other.GetComponent<Horse>();
-        if (horse)
-        {
-            horseList.Add(horse);
-            AI_Horse ai = horse.transform.parent.GetComponent<AI_Horse>();
-            if (ai)
-                aiList.Add(ai);
-        }
+        for (int i = 0; i < raceController.Horses.Count; i++)
+            raceController.Horses[i].StartMove();
     }
 }

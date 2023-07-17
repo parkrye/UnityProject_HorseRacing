@@ -16,7 +16,7 @@ public class PlayerController : HorseController
         base.Initialize();
     }
 
-    protected override void StartMove()
+    public override void StartMove()
     {
         base.StartMove();
     }

@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 5988404331502680950}
   - component: {fileID: 3856576855632163113}
   - component: {fileID: -8867032108709167668}
+  - component: {fileID: 6260164764768413326}
   m_Layer: 0
   m_Name: AIHorse
   m_TagString: Untagged
@@ -307,6 +308,8 @@ MonoBehaviour:
   exhaustion: 0
   fowardAnimValue: 0
   turnAnimValue: 0
+  rankWeight: -1
+  rankZone: {fileID: 0}
   moveDir: {x: 0, y: 0, z: 0}
   fewerWayChecker: {fileID: 3664341123928722993}
   strategy: 0
@@ -362,6 +365,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &6260164764768413326
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6792858629544528804}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 2.5}
+  m_Center: {x: 0, y: 1, z: 0.6}
 --- !u!1 &7207834836729021648
 GameObject:
   m_ObjectHideFlags: 0

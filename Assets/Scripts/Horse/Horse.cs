@@ -50,4 +50,11 @@ public class Horse : MonoBehaviour
         for(int i = 0; i < accesory.Length; i++)
             accesory[i].material = materials[Random.Range(0, materials.Length)];
     }
+
+    public void RestartAnimator()
+    {
+        Animator animator = GetComponent<Animator>();
+        animator.enabled = false;
+        animator.enabled = true;
+    }
 }

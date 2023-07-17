@@ -6,7 +6,7 @@ public class StepUpPoint : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        AI_Horse ai = other.transform.parent.GetComponent<AI_Horse>();
+        AI_Horse ai = other.GetComponent<AI_Horse>();
         if (ai)
         {
             ai.StepUp(step);

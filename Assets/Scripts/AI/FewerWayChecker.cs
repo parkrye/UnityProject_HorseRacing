@@ -13,19 +13,19 @@ public class FewerWayChecker : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Horse ai = other.GetComponent<Horse>();
+        HorseController ai = other.GetComponent<HorseController>();
         if(ai) 
         {
-            horseList.Add(ai);
+            horseList.Add(ai.horse);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        Horse ai = other.GetComponent<Horse>();
+        HorseController ai = other.GetComponent<HorseController>();
         if (ai)
         {
-            horseList.Remove(ai);
+            horseList.Remove(ai.horse);
         }
     }
 }

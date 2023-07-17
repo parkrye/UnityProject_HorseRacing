@@ -3,11 +3,11 @@ using UnityEngine.Events;
 
 public class CompetitionChecker : MonoBehaviour
 {
-    public UnityEvent<AI_Horse> CollideEvent;
+    public UnityEvent<HorseController> CollideEvent;
 
     void OnTriggerStay(Collider other)
     {
-        AI_Horse target = other.GetComponent<AI_Horse>();
+        HorseController target = other.GetComponent<HorseController>();
         if(target)
         {
             CollideEvent?.Invoke(target);
