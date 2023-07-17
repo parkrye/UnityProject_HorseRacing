@@ -53,7 +53,7 @@ public class AI_Horse : HorseController
                 break;
         }
         slipStream = 0;
-        wallDistance = horse.Data.intelligence;
+        wallDistance = horse.Data.intelligence * 2f;
         leastStamina = horse.Data.stamina;
         horse.RestartAnimator();
         start = false;

@@ -8,10 +8,12 @@ public class RaceController : MonoBehaviour
 
     [SerializeField] StartGate startGate;
     [SerializeField] RankController rankController;
+    [SerializeField] RaceCameraController raceCameraController;
 
     void Awake()
     {
         startGate.Initialize();
         rankController.Initialize();
+        raceCameraController.Initialize();
     }
 }
