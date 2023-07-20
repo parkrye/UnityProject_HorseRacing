@@ -9,10 +9,9 @@ public class AI_Horse : HorseController
     [SerializeField] Strategy strategy;
     [SerializeField] bool drawGizmo;
 
-    [SerializeField] float wallDistance;
+    [SerializeField] float wallDistance, speed;
     [SerializeField] bool start;
-    [SerializeField] float[] steps;
-    [SerializeField] int step, turn;
+    [SerializeField] int turn, spurt;
     [SerializeField] int leftCount = 0, fowardCount = 0, rightCount = 0;
 
     [SerializeField] Vector3 rotaDir, sideDir, turnDir;
@@ -27,29 +26,16 @@ public class AI_Horse : HorseController
 
     void RaceSetting()
     {
-        step = 0;
-        steps = new float[3];
+        spurt = 0;
         switch (strategy)
         {
             case Strategy.Runway:
-                steps[0] = 1f;
-                steps[1] = 0.95f;
-                steps[2] = 1f;
                 break;
             case Strategy.Front:
-                steps[0] = 0.95f;
-                steps[1] = 0.9f;
-                steps[2] = 1f;
                 break;
             case Strategy.Stalker:
-                steps[0] = 0.9f;
-                steps[1] = 0.95f;
-                steps[2] = 1f;
                 break;
             case Strategy.Closer:
-                steps[0] = 0.85f;
-                steps[1] = 1f;
-                steps[2] = 1f;
                 break;
         }
         slipStream = 0;
@@ -95,11 +81,74 @@ public class AI_Horse : HorseController
         }
         turnDir = Vector3.Lerp(transform.forward, rotaDir, Time.deltaTime);
 
-        moveDir = transform.forward;
-        if (leastStamina > 0f)
-            moveDir *= horse.Data.speed * steps[step];
+        switch (strategy)
+        {
+            case Strategy.Runway:
+                if (spurt >= 4)
+                {
+                    speed = horse.Data.speed;
+                    break;
+                }
+                if (rank == 1)          // 1위라면 감속
+                    SpeedDown();
+                else if (rank > 1)      // 2위 이하라면 가속
+                    SpeedUp();
+                break;
+            case Strategy.Front:
+                if (spurt >= 3)
+                {
+                    speed = horse.Data.speed;
+                    break;
+                }
+                if (rank == 1)          // 1위라면 감속
+                    SpeedDown();
+                else if (rank > 4)      // 5위 이하라면 가속
+                    SpeedUp();
+                break;
+            case Strategy.Stalker:
+                if (spurt >= 2)
+                {
+                    speed = horse.Data.speed;
+                    break;
+                }
+                if (rank <= 2)          // 2위 이상이라면 감속
+                    SpeedDown();
+                else if (rank > 6)      // 7위 이하라면 가속
+                    SpeedUp();
+                break;
+            case Strategy.Closer:
+                if (spurt >= 1)
+                {
+                    speed = horse.Data.speed;
+                    break;
+                }
+                if (rank <= 6)          // 6위 이상이라면 감속
+                    SpeedDown();
+                else if (rank == 8)     // 8위라면 가속
+                    SpeedUp();
+                break;
+        }
+
+        if (leastStamina <= 0f)
+            moveDir = transform.forward * (speed * 0.5f + 1f);
         else
-            moveDir *= horse.Data.speed * 0.5f;
+            moveDir = transform.forward * (speed + 1f);
+    }
+
+    void SpeedUp()
+    {
+        if (speed < horse.Data.speed)
+            speed += horse.Data.power * Time.deltaTime;
+        else
+            speed = horse.Data.speed;
+    }
+
+    void SpeedDown()
+    {
+        if (speed > 0f)
+            speed -= Time.deltaTime;
+        else
+            speed = 0f;
     }
 
     void CheckSideDistance()
@@ -173,15 +222,15 @@ public class AI_Horse : HorseController
         if (leastStamina > 0f)
         {
             riderAnimator.SetBool("Run", true);
-            if (steps[step] >= 0.9f)
+            if (speed >= horse.Data.speed * 0.9f)
                 fowardAnimValue = Mathf.Lerp(fowardAnimValue, 1f, Time.deltaTime);
-            else if (steps[step] >= 0.8f)
+            else if (speed >= horse.Data.speed * 0.8f)
                 fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.7f, Time.deltaTime);
-            else if (steps[step] >= 0.7f)
+            else if (speed >= horse.Data.speed * 0.7f)
                 fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.5f, Time.deltaTime);
-            else if (steps[step] >= 0.6f)
+            else if (speed >= horse.Data.speed * 0.6f)
                 fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.3f, Time.deltaTime);
-            else if (steps[step] >= 0.4f)
+            else if (speed >= horse.Data.speed * 0.1f)
                 fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0.1f, Time.deltaTime);
             else
                 fowardAnimValue = Mathf.Lerp(fowardAnimValue, 0f, Time.deltaTime);
@@ -227,7 +276,7 @@ public class AI_Horse : HorseController
             yield return null;
         while (true)
         {
-            float consume = (horse.Data.speed * steps[step] * steps[step] - horse.Data.intelligence * 0.5f) * 0.015f;
+            float consume = (speed - horse.Data.intelligence * 0.1f) * 0.015f;
             if (turn != 0)
                 consume += horse.Data.speed * 0.01f;
             consume = (consume < 0.1f ? 0.1f : consume);
@@ -243,12 +292,9 @@ public class AI_Horse : HorseController
         }
     }
 
-    public void StepUp(int index)
+    public void Spurt()
     {
-        if (index <= 0 || index > 2)
-            return;
-        if (index > step)
-            step = index;
+        spurt++;
     }
 
     void OnDrawGizmos()

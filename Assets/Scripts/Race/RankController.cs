@@ -7,10 +7,12 @@ public class RankController : MonoBehaviour
     [SerializeField] RaceController raceController;
     [SerializeField] List<RankCheckerZone> zones;
     [SerializeField] PriorityQueue<HorseController, float> rankPQ;
+    [SerializeField] Dictionary<HorseController, int> rank;
 
     public void Initialize()
     {
         rankPQ = new PriorityQueue<HorseController, float>(false);
+        rank = new Dictionary<HorseController, int>();
 
         StartCoroutine(RankRoutine());
     }
@@ -29,7 +31,10 @@ public class RankController : MonoBehaviour
 
             for(int i = 0; i < raceController.Horses.Count; i++)
             {
-                Debug.Log($"{i+1}À§ : {rankPQ.Dequeue().name}");
+                HorseController horse = rankPQ.Dequeue();
+                rank[horse] = i + 1;
+                horse.rank = rank[horse];
+                Debug.Log($"{rank[horse]}À§ : {horse.name}");
             }
 
             yield return null;

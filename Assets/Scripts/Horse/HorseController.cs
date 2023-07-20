@@ -15,6 +15,7 @@ public abstract class HorseController : MonoBehaviour
     [SerializeField] protected float fowardAnimValue, turnAnimValue;
     [SerializeField] public float rankWeight;
     [SerializeField] public RankCheckerZone rankZone;
+    [SerializeField] public int rank;
 
     [SerializeField] protected Vector3 moveDir;
 
