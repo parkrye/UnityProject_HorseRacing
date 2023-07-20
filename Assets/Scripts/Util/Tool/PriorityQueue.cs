@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-public class PriorityQueue<TElement, TPriority>
+public class PriorityQueue<TElement, TPriority> where TPriority : IComparable
 {
     private struct Node
     {
@@ -11,10 +11,13 @@ public class PriorityQueue<TElement, TPriority>
     private List<Node> nodes;
     private IComparer<TPriority> comparer;
 
-    public PriorityQueue()
+    public PriorityQueue(bool ascending = true)
     {
         this.nodes = new List<Node>();
-        this.comparer = Comparer<TPriority>.Default;
+        if(ascending)
+            this.comparer = Comparer<TPriority>.Default;
+        else
+            this.comparer = Comparer<TPriority>.Create((a, b) => b.CompareTo(a));
     }
 
     public PriorityQueue(IComparer<TPriority> comparer)

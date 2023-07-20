@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 60dc0c1731271424f82725e33b71820b, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 4f3a76ad9ad745444ad23e831e89ad56, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5558,11 +5558,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2559140588356048512, guid: ec82e428de1f37d4e989608095fc0d90, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000187227
+      value: -0.0000000187227
       objectReference: {fileID: 0}
     - target: {fileID: 2559140588356048512, guid: ec82e428de1f37d4e989608095fc0d90, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000044198294
+      value: 0.0000000044198294
       objectReference: {fileID: 0}
     - target: {fileID: 2559140588356048515, guid: ec82e428de1f37d4e989608095fc0d90, type: 3}
       propertyPath: m_Follow
@@ -5578,31 +5578,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2559140588499078067, guid: ec82e428de1f37d4e989608095fc0d90, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.42
+      value: -5.4186816
       objectReference: {fileID: 0}
     - target: {fileID: 2559140588499078067, guid: ec82e428de1f37d4e989608095fc0d90, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 2.4335785
       objectReference: {fileID: 0}
     - target: {fileID: 2559140588499078067, guid: ec82e428de1f37d4e989608095fc0d90, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.4449997
+      value: 7.033104
       objectReference: {fileID: 0}
     - target: {fileID: 2559140588499078067, guid: ec82e428de1f37d4e989608095fc0d90, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.973249
+      value: 0.9969753
       objectReference: {fileID: 0}
     - target: {fileID: 2559140588499078067, guid: ec82e428de1f37d4e989608095fc0d90, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.22975291
+      value: -0.07725139
       objectReference: {fileID: 0}
     - target: {fileID: 2559140588499078067, guid: ec82e428de1f37d4e989608095fc0d90, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000187227
+      value: 0.00849388
       objectReference: {fileID: 0}
     - target: {fileID: 2559140588499078067, guid: ec82e428de1f37d4e989608095fc0d90, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000044198294
+      value: 0.00065815466
       objectReference: {fileID: 0}
     - target: {fileID: 2810047057671658584, guid: ec82e428de1f37d4e989608095fc0d90, type: 3}
       propertyPath: m_TrackedObjectOffset.z

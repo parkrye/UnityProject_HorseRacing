@@ -6,15 +6,11 @@ public class RankController : MonoBehaviour
 {
     [SerializeField] RaceController raceController;
     [SerializeField] List<RankCheckerZone> zones;
-    [SerializeField] Dictionary<HorseController, float> rankDict;
+    [SerializeField] PriorityQueue<HorseController, float> rankPQ;
 
     public void Initialize()
     {
-        rankDict = new Dictionary<HorseController, float>();
-        for(int i = 0; i < raceController.Horses.Count; i++)
-        {
-            rankDict[raceController.Horses[i]] = 0f;
-        }
+        rankPQ = new PriorityQueue<HorseController, float>(false);
 
         StartCoroutine(RankRoutine());
     }
@@ -28,8 +24,14 @@ public class RankController : MonoBehaviour
             {
                 float rankWeight = raceController.Horses[i].rankWeight * 100;
                 float distance = Vector3.SqrMagnitude(raceController.Horses[i].transform.position - raceController.Horses[i].rankZone.checkPoint.position) * 0.0001f;
-                rankDict[raceController.Horses[i]] = rankWeight + distance;
+                rankPQ.Enqueue(raceController.Horses[i], rankWeight + distance);
             }
+
+            for(int i = 0; i < raceController.Horses.Count; i++)
+            {
+                Debug.Log($"{i+1}À§ : {rankPQ.Dequeue().name}");
+            }
+
             yield return null;
         }
     }
