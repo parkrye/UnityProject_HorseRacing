@@ -10,29 +10,21 @@ public class Horse : MonoBehaviour
     [ContextMenu("Initialize")]
     public void Initialize()
     {
-        // 단거리 표준
-        //horseData.speed = 0;
-        //horseData.stamina = 0;
-        //horseData.power = 0;
-        //horseData.intelligence = 0;
-
-        // 마일 표준
         horseData.speed = 30;
-        horseData.stamina = 50;
         horseData.power = 20;
         horseData.intelligence = 20;
 
-        // 중거리 표준
-        //horseData.speed = 0;
+        // 단거리 표준
         //horseData.stamina = 0;
-        //horseData.power = 0;
-        //horseData.intelligence = 0;
+
+        // 마일 표준
+        horseData.stamina = 100;
+
+        // 중거리 표준
+        //horseData.stamina = 0;
 
         // 장거리 표준
-        //horseData.speed = 0;
         //horseData.stamina = 0;
-        //horseData.power = 0;
-        //horseData.intelligence = 0;
 
         horseData.speed += Random.Range(-horseData.speed * 0.1f, horseData.speed * 0.1f);
         horseData.stamina += Random.Range(-horseData.stamina * 0.1f, horseData.stamina * 0.1f);

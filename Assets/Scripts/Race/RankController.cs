@@ -34,7 +34,7 @@ public class RankController : MonoBehaviour
                 HorseController horse = rankPQ.Dequeue();
                 rank[horse] = i + 1;
                 horse.rank = rank[horse];
-                Debug.Log($"{rank[horse]}À§ : {horse.name}");
+                Debug.Log($"{rank[horse]}À§ : {horse.name}, {((AI_Horse)horse).strategy}, {((AI_Horse)horse).speed == horse.horse.Data.speed}");
             }
 
             yield return null;

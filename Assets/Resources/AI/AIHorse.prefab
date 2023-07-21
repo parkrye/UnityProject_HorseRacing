@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3973359371234415866}
-  - component: {fileID: 7837129388138012187}
-  - component: {fileID: 3664341123928722993}
+  - component: {fileID: 4389412884471909074}
+  - component: {fileID: 8944960899357122699}
   m_Layer: 0
   m_Name: Foward
   m_TagString: Untagged
@@ -26,14 +26,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494078907719317502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 10}
-  m_LocalScale: {x: 20, y: 2, z: 20}
+  m_LocalPosition: {x: 0, y: 1, z: 3}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4317968530855300305}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7837129388138012187
+--- !u!65 &4389412884471909074
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,7 +46,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3664341123928722993
+--- !u!114 &8944960899357122699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,10 +55,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 494078907719317502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4af49995a11b0ee44a8fe4e36b1adb5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e781d08bad9c6348a1da8d8d7c0bb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horseList: []
+  isHorse: 0
 --- !u!1 &1381424816707660882
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +303,8 @@ MonoBehaviour:
   horse: {fileID: 5924742085400676224}
   horseAnimator: {fileID: 2820086198909639463}
   riderAnimator: {fileID: 7438950742507414888}
+  head: {fileID: 8380996063374558089}
+  chest: {fileID: 25446788234266239}
   slipStream: 0
   leastStamina: 0
   exhaustion: 0
@@ -310,18 +312,17 @@ MonoBehaviour:
   turnAnimValue: 0
   rankWeight: -1
   rankZone: {fileID: 0}
+  rank: 0
   moveDir: {x: 0, y: 0, z: 0}
-  fewerWayChecker: {fileID: 3664341123928722993}
+  raceController: {fileID: 0}
+  frontChecker: {fileID: 8944960899357122699}
   strategy: 0
   drawGizmo: 0
   wallDistance: 0
+  speed: 0
   start: 0
-  steps: []
-  step: 0
   turn: 0
-  leftCount: 0
-  fowardCount: 0
-  rightCount: 0
+  spurt: 0
   rotaDir: {x: 0, y: 0, z: 0}
   sideDir: {x: 0, y: 0, z: 0}
   turnDir: {x: 0, y: 0, z: 0}
@@ -336,7 +337,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6792858629544528804}
   serializedVersion: 2
-  m_Mass: 400
+  m_Mass: 1
   m_Drag: 2
   m_AngularDrag: 4
   m_UseGravity: 1
@@ -470,9 +471,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c741fee932710bc4f81a4433856f4ca6, type: 3}
+--- !u!4 &25446788234266239 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5990451440418260422, guid: c741fee932710bc4f81a4433856f4ca6, type: 3}
+  m_PrefabInstance: {fileID: 6014623688374830009}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &7438950742507414888 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3766216731831510737, guid: c741fee932710bc4f81a4433856f4ca6, type: 3}
+  m_PrefabInstance: {fileID: 6014623688374830009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8380996063374558089 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2825863507534676016, guid: c741fee932710bc4f81a4433856f4ca6, type: 3}
   m_PrefabInstance: {fileID: 6014623688374830009}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8552339468587917269

@@ -5,8 +5,11 @@ using UnityEngine.Rendering;
 
 public class RaceCameraController : MonoBehaviour
 {
+    [SerializeField] RaceController raceController;
     [SerializeField] List<CinemachineVirtualCamera> cameras;
     [SerializeField] Dictionary<CinemachineVirtualCamera, Volume> cvDict;
+
+    [SerializeField] int cameraNum, targetNum;
 
     public void Initialize()
     {
@@ -26,5 +29,31 @@ public class RaceCameraController : MonoBehaviour
         {
             cvDict[cameras[i]].enabled = (i == index);
         }
+    }
+
+    public void OnChangeCameraButtonClicked()
+    {
+        cameraNum++;
+        if (cameraNum == cameras.Count)
+            cameraNum = 0;
+
+        for(int i = 0; i < cameras.Count; i++)
+        {
+            cameras[i].Priority = (i == cameraNum) ? 1 : 0;
+        }
+    }
+
+    public void OnChangeTargetButtonClicked()
+    {
+        targetNum++;
+        if (targetNum == raceController.Horses.Count)
+            targetNum = 0;
+
+        cameras[0].Follow = raceController.Horses[targetNum].transform;
+        cameras[0].LookAt = raceController.Horses[targetNum].transform;
+        cameras[0].Follow = raceController.Horses[targetNum].head;
+        cameras[0].LookAt = raceController.Horses[targetNum].chest;
+        cameras[2].Follow = raceController.Horses[targetNum].transform;
+        cameras[2].LookAt = raceController.Horses[targetNum].transform;
     }
 }

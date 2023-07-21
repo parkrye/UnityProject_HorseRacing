@@ -4,15 +4,17 @@ using UnityEngine;
 public class AI_Horse : HorseController
 {
     [Header("AI Horse")]
-    [SerializeField] FewerWayChecker fewerWayChecker;
-    enum Strategy { Runway, Front, Stalker, Closer }
-    [SerializeField] Strategy strategy;
+    [SerializeField] public RaceController raceController;
+    [SerializeField] FrontChecker frontChecker;
+
+    public enum Strategy { Runway, Front, Stalker, Closer }
+    [SerializeField] public Strategy strategy;
     [SerializeField] bool drawGizmo;
 
-    [SerializeField] float wallDistance, speed;
+    [SerializeField] float wallDistance;
+    [SerializeField] public float speed;
     [SerializeField] bool start;
     [SerializeField] int turn, spurt;
-    [SerializeField] int leftCount = 0, fowardCount = 0, rightCount = 0;
 
     [SerializeField] Vector3 rotaDir, sideDir, turnDir;
     [SerializeField] Vector3 leftSight, fowardSight, rightSight;
@@ -54,6 +56,7 @@ public class AI_Horse : HorseController
     {
         yield return new WaitForSeconds(Random.Range(0f, (20f - horse.Data.intelligence) * 0.1f));
         start = true;
+        speed = horse.Data.speed * 0.3f;
     }
 
     protected override IEnumerator URoutine()
@@ -89,10 +92,10 @@ public class AI_Horse : HorseController
                     speed = horse.Data.speed;
                     break;
                 }
-                if (rank == 1)          // 1위라면 감속
-                    SpeedDown();
-                else if (rank > 1)      // 2위 이하라면 가속
-                    SpeedUp();
+                if (rank <= + spurt + 1) 
+                    SpeedDown();        // 1위라면 감속
+                else if (rank > 1) 
+                    SpeedUp();          // 2위 이하라면 가속
                 break;
             case Strategy.Front:
                 if (spurt >= 3)
@@ -100,10 +103,10 @@ public class AI_Horse : HorseController
                     speed = horse.Data.speed;
                     break;
                 }
-                if (rank == 1)          // 1위라면 감속
-                    SpeedDown();
-                else if (rank > 4)      // 5위 이하라면 가속
-                    SpeedUp();
+                if (rank <= raceController.strategy[0] + spurt + 1)
+                    SpeedDown();        // 도주보다 빨라지면 감속
+                else
+                    SpeedUp();          // 그 외에 가속
                 break;
             case Strategy.Stalker:
                 if (spurt >= 2)
@@ -111,10 +114,10 @@ public class AI_Horse : HorseController
                     speed = horse.Data.speed;
                     break;
                 }
-                if (rank <= 2)          // 2위 이상이라면 감속
-                    SpeedDown();
-                else if (rank > 6)      // 7위 이하라면 가속
-                    SpeedUp();
+                if (rank <= raceController.strategy[0] + raceController.strategy[1] + spurt + 1)
+                    SpeedDown();        // 선행보다 빨라지면 감속
+                else
+                    SpeedUp();          // 그 외에 가속
                 break;
             case Strategy.Closer:
                 if (spurt >= 1)
@@ -122,17 +125,14 @@ public class AI_Horse : HorseController
                     speed = horse.Data.speed;
                     break;
                 }
-                if (rank <= 6)          // 6위 이상이라면 감속
-                    SpeedDown();
-                else if (rank == 8)     // 8위라면 가속
-                    SpeedUp();
+                if (rank <= raceController.strategy[0] + raceController.strategy[1] + raceController.strategy[2] + spurt + 1)
+                    SpeedDown();        // 선입보다 빨라지면 감속
+                else
+                    SpeedUp();          // 그 외에 가속
                 break;
         }
 
-        if (leastStamina <= 0f)
-            moveDir = transform.forward * (speed * 0.5f + 1f);
-        else
-            moveDir = transform.forward * (speed + 1f);
+        moveDir = transform.forward * (speed + 1f);
     }
 
     void SpeedUp()
@@ -160,53 +160,29 @@ public class AI_Horse : HorseController
         if (Physics.Raycast(transform.position, transform.right, out RaycastHit rightHit, wallDistance, LayerMask.GetMask("Wall")))
             rightDistance = rightHit.distance;
 
-        if (leftDistance > rightDistance && rightDistance < 5f)
+        if (leftDistance > rightDistance && rightDistance < 3f)
         {
-            sideDir = 0.5f * horse.Data.intelligence * -transform.right;
+            sideDir = 0.2f * horse.Data.intelligence * -transform.right;
             turn = -1;
         }
-        else if (leftDistance < rightDistance && leftDistance < 5f)
+        else if (leftDistance < rightDistance && leftDistance < 3f)
         {
-            sideDir = 0.5f * horse.Data.intelligence * transform.right;
+            sideDir = 0.2f * horse.Data.intelligence * transform.right;
             turn = 1;
         }
         else
         {
-            if(fewerWayChecker.HorseList.Count > 0)
+            if (frontChecker.IsHorse)
             {
-                leftSight = (transform.forward - transform.right) + transform.position;
-                fowardSight = transform.forward + transform.position;
-                rightSight = (transform.forward + transform.right) + transform.position;
-                leftCount = 0; fowardCount = 0; rightCount = 0;
-
-                for (int i = fewerWayChecker.HorseList.Count - 1; i >= 0; i--)
+                if(raceController.isLeftRound)
                 {
-                    Vector3 horsePos = fewerWayChecker.HorseList[i].transform.position;
-                    float leftDifference = Vector3.SqrMagnitude(leftSight - horsePos);
-                    float fowardDifference = Vector3.SqrMagnitude(fowardSight - horsePos);
-                    float rightDifference = Vector3.SqrMagnitude(rightSight - horsePos);
-                    if (leftDifference <= fowardDifference && leftDifference <= rightDifference)
-                        leftCount++;
-                    else if (rightDifference <= leftDifference && rightDifference <= fowardDifference)
-                        rightCount++;
-                    else
-                        fowardCount++;
-                }
-
-                if (leftCount < fowardCount && leftCount < rightCount)
-                {
-                    sideDir = 0.5f * horse.Data.intelligence * -transform.right;
-                    turn = -1;
-                }
-                else if (rightCount < leftCount && rightCount < fowardCount)
-                {
-                    sideDir = 0.5f * horse.Data.intelligence * transform.right;
+                    sideDir = 0.2f * horse.Data.intelligence * transform.right;
                     turn = 1;
                 }
                 else
                 {
-                    sideDir = Vector3.Lerp(sideDir, Vector3.zero, Time.deltaTime);
-                    turn = 0;
+                    sideDir = 0.2f * horse.Data.intelligence * -transform.right;
+                    turn = -1;
                 }
             }
             else
@@ -266,7 +242,7 @@ public class AI_Horse : HorseController
 
     void Move()
     {
-        rb.AddForce(moveDir + sideDir, ForceMode.Acceleration);
+        rb.AddForce(moveDir + sideDir + Vector3.up, ForceMode.Acceleration);
         transform.LookAt(turnDir + transform.position);
     }
 
@@ -287,6 +263,7 @@ public class AI_Horse : HorseController
             {
                 StartCoroutine(ExhaustionRoutine());
                 leastStamina = 0f;
+                speed = 0f;
             }
             yield return new WaitForSeconds(1f);
         }
@@ -306,10 +283,5 @@ public class AI_Horse : HorseController
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * wallDistance);
         Gizmos.DrawLine(transform.position, transform.position + transform.right * wallDistance);
         Gizmos.DrawLine(transform.position, transform.position - transform.right * wallDistance);
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position + transform.up, leftSight + transform.up);
-        Gizmos.DrawLine(transform.position + transform.up, fowardSight + transform.up);
-        Gizmos.DrawLine(transform.position + transform.up, rightSight + transform.up);
     }
 }

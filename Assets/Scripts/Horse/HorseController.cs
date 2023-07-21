@@ -7,12 +7,14 @@ public abstract class HorseController : MonoBehaviour
     [SerializeField] protected Rigidbody rb;
     [SerializeField] public Horse horse;
     [SerializeField] protected Animator horseAnimator, riderAnimator;
+    [SerializeField] public Transform head, chest;
 
     [SerializeField] protected int slipStream;
     [SerializeField] protected float leastStamina;
     [SerializeField] protected bool exhaustion;
 
     [SerializeField] protected float fowardAnimValue, turnAnimValue;
+
     [SerializeField] public float rankWeight;
     [SerializeField] public RankCheckerZone rankZone;
     [SerializeField] public int rank;
@@ -64,7 +66,7 @@ public abstract class HorseController : MonoBehaviour
         }
     }
 
-    public void OnCollideEvent(AI_Horse target)
+    public void OnCollideEvent(HorseController target)
     {
         float selfPower = Random.Range(0f, horse.Data.power);
         float targetPower = Random.Range(0f, target.horse.Data.power);
