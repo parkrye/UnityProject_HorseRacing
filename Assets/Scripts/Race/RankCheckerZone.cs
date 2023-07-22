@@ -12,6 +12,8 @@ public class RankCheckerZone : MonoBehaviour
         {
             if(horse.rankWeight == rankWeight - 1)
             {
+                horse.totalMoveDistance += horse.inZoneMoveDistance;
+                horse.inZoneMoveDistance = 0f;
                 horse.rankWeight = rankWeight;
                 horse.rankZone = this;
             }

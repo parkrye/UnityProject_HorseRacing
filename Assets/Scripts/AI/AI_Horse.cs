@@ -19,7 +19,7 @@ public class AI_Horse : HorseController
     [SerializeField] Vector3 rotaDir, sideDir, turnDir;
     [SerializeField] Vector3 leftSight, fowardSight, rightSight;
 
-    [ContextMenu("Initialize")]
+    [ContextMenu("Setting")]
     public override void Initialize()
     {
         RaceSetting();

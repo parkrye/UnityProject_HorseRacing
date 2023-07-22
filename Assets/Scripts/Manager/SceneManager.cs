@@ -39,6 +39,11 @@ public class SceneManager : MonoBehaviour
         StartCoroutine(LoadingRoutine(sceneName));
     }
 
+    public void LoadRacneScene(string sceneName)
+    {
+        LoadScene($"RaceScene_{sceneName}");
+    }
+
     IEnumerator LoadingRoutine(string sceneName)
     {
         ReadyToPlay = false;

@@ -29,6 +29,18 @@ public class RaceCameraController : MonoBehaviour
         {
             cvDict[cameras[i]].enabled = (i == index);
         }
+
+        for (int i = 0; i < cameras.Count; i++)
+        {
+            cameras[i].Priority = (i == cameraNum) ? 1 : 0;
+        }
+
+        cameras[0].Follow = raceController.Horses[targetNum].transform;
+        cameras[0].LookAt = raceController.Horses[targetNum].transform;
+        cameras[1].Follow = raceController.Horses[targetNum].head;
+        cameras[1].LookAt = raceController.Horses[targetNum].chest;
+        cameras[2].Follow = raceController.Horses[targetNum].transform;
+        cameras[2].LookAt = raceController.Horses[targetNum].transform;
     }
 
     public void OnChangeCameraButtonClicked()
@@ -37,7 +49,7 @@ public class RaceCameraController : MonoBehaviour
         if (cameraNum == cameras.Count)
             cameraNum = 0;
 
-        for(int i = 0; i < cameras.Count; i++)
+        for (int i = 0; i < cameras.Count; i++)
         {
             cameras[i].Priority = (i == cameraNum) ? 1 : 0;
         }
@@ -51,8 +63,8 @@ public class RaceCameraController : MonoBehaviour
 
         cameras[0].Follow = raceController.Horses[targetNum].transform;
         cameras[0].LookAt = raceController.Horses[targetNum].transform;
-        cameras[0].Follow = raceController.Horses[targetNum].head;
-        cameras[0].LookAt = raceController.Horses[targetNum].chest;
+        cameras[1].Follow = raceController.Horses[targetNum].head;
+        cameras[1].LookAt = raceController.Horses[targetNum].chest;
         cameras[2].Follow = raceController.Horses[targetNum].transform;
         cameras[2].LookAt = raceController.Horses[targetNum].transform;
     }

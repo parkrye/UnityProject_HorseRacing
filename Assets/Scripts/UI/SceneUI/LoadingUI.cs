@@ -20,10 +20,12 @@ public class LoadingUI : MonoBehaviour
     public void FadeIn()
     {
         anim.SetTrigger("FadeIn");
+        gameObject.SetActive(false);
     }
 
     public void FadeOut()
     {
         anim.SetTrigger("FadeOut");
+        gameObject.SetActive(false);
     }
 }

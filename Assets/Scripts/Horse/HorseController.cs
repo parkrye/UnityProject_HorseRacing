@@ -18,10 +18,11 @@ public abstract class HorseController : MonoBehaviour
     [SerializeField] public float rankWeight;
     [SerializeField] public RankCheckerZone rankZone;
     [SerializeField] public int rank;
+    [SerializeField] public float totalMoveDistance, inZoneMoveDistance;
 
     [SerializeField] protected Vector3 moveDir;
 
-    [ContextMenu("Initialize")]
+    [ContextMenu("Setting")]
     public virtual void Initialize()
     {
         StartCoroutine(IdleMotionRoutine());

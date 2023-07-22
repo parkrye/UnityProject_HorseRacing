@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static AI_Horse;
 
 public class RaceController : MonoBehaviour
 {
@@ -9,16 +8,18 @@ public class RaceController : MonoBehaviour
 
     [SerializeField] StartGate startGate;
     [SerializeField] RankController rankController;
-    [SerializeField] RaceCameraController raceCameraController;
+    [SerializeField] public RaceCameraController raceCameraController;
+    [SerializeField] public RaceDistanceChecker raceDistanceChecker;
 
     [SerializeField] public int[] strategy;
     [SerializeField] public bool isLeftRound;
 
-    void Awake()
+    public void Initialize()
     {
         strategy = new int[4];
         startGate.Initialize();
         rankController.Initialize();
+        raceDistanceChecker.Initialize();
         raceCameraController.Initialize();
     }
 }

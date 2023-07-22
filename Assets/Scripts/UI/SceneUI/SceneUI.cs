@@ -1,4 +1,16 @@
 public abstract class SceneUI : BaseUI
 {
-    public abstract void Initialize();
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+    protected virtual void OnEnable()
+    {
+        Initialize();
+    }
+
+    public virtual void Initialize()
+    {
+
+    }
 }

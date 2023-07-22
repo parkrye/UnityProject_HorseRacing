@@ -9,7 +9,7 @@ public class PlayerController : HorseController
     [SerializeField] float nowFowardSpeedValue, nowSideSpeedValue, nowTurnValue;
     [SerializeField] float sideMoveModifier, turnModifier;
 
-    [ContextMenu("Initialize")]
+    [ContextMenu("Setting")]
     public override void Initialize()
     {
         leastStamina = horse.Data.stamina;

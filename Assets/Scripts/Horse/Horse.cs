@@ -7,7 +7,7 @@ public class Horse : MonoBehaviour
     [SerializeField] Material[] materials;
     [SerializeField] SkinnedMeshRenderer[] body, fur, accesory;
 
-    [ContextMenu("Initialize")]
+    [ContextMenu("Setting")]
     public void Initialize()
     {
         horseData.speed = 30;

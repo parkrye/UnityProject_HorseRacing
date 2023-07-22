@@ -24,8 +24,10 @@ public class RankController : MonoBehaviour
         {
             for (int i = 0; i < raceController.Horses.Count; i++)
             {
-                float rankWeight = raceController.Horses[i].rankWeight * 100;
-                float distance = Vector3.SqrMagnitude(raceController.Horses[i].transform.position - raceController.Horses[i].rankZone.checkPoint.position) * 0.0001f;
+                float rankWeight = raceController.Horses[i].rankWeight * 1000000;
+                Vector3 distanceVec = raceController.Horses[i].transform.position - raceController.Horses[i].rankZone.checkPoint.position;
+                float distance = Vector3.SqrMagnitude(distanceVec);
+                raceController.Horses[i].inZoneMoveDistance = distance;
                 rankPQ.Enqueue(raceController.Horses[i], rankWeight + distance);
             }
 
@@ -34,7 +36,6 @@ public class RankController : MonoBehaviour
                 HorseController horse = rankPQ.Dequeue();
                 rank[horse] = i + 1;
                 horse.rank = rank[horse];
-                Debug.Log($"{rank[horse]}À§ : {horse.name}, {((AI_Horse)horse).strategy}, {((AI_Horse)horse).speed == horse.horse.Data.speed}");
             }
 
             yield return null;
