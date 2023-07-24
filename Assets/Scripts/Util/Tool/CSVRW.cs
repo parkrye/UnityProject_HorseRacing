@@ -13,9 +13,9 @@ public static class CSVRW
     /// </summary>
     /// <param name="fileName">파일 이름</param>
     /// <returns>딕셔너리 구조의 기록 파일</returns>
-    public static Dictionary<string, List<int>> ReadCSV(string fileName)
+    public static Dictionary<string, List<string>> ReadCSV(string fileName)
     {
-        Dictionary<string, List<int>> answer = new();         // 저장할 딕셔너리
+        Dictionary<string, List<string>> answer = new();         // 저장할 딕셔너리
 
         TextAsset data = GameManager.Resource.Load<Object>($"CSV/{fileName}") as TextAsset;
                                                             // 텍스트에셋으로 변환한 기록 파일 데이터
@@ -26,9 +26,9 @@ public static class CSVRW
             if (texts[i].Length <= 1)                       // 길이가 1 이하라면 즉시 종료
                 break;                                      // (저장 방식 문제로 기록 데이터에 빈 문자열 한 줄이 추가되기 때문)
             string[] line = texts[i].Split(",");            // 반점으로 분할한 문자열들을
-            List<int> list = new();
+            List<string> list = new();
             for (int j = 1; j < line.Length; j++)
-                list.Add(int.Parse(line[j]));
+                list.Add(line[j]);
             answer.Add(line[0], list);                      // 첫번째는 키로, 나머지는 리스트로 저장
         }
 

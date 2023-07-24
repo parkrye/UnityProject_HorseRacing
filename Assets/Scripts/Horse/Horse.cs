@@ -8,23 +8,24 @@ public class Horse : MonoBehaviour
     [SerializeField] SkinnedMeshRenderer[] body, fur, accesory;
 
     [ContextMenu("Setting")]
-    public void Initialize()
+    public void Initialize(string horseName)
     {
+        horseData.horseName = horseName;
         horseData.speed = 30;
         horseData.power = 20;
         horseData.intelligence = 20;
 
         // 단거리 표준
-        //horseData.stamina = 0;
+        //horseData.stamina = 30;
 
         // 마일 표준
-        horseData.stamina = 100;
+        horseData.stamina = 50;
 
         // 중거리 표준
-        //horseData.stamina = 0;
+        //horseData.stamina = 80;
 
         // 장거리 표준
-        //horseData.stamina = 0;
+        //horseData.stamina = 100;
 
         horseData.speed += Random.Range(-horseData.speed * 0.1f, horseData.speed * 0.1f);
         horseData.stamina += Random.Range(-horseData.stamina * 0.1f, horseData.stamina * 0.1f);

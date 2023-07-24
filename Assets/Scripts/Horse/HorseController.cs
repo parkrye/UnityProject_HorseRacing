@@ -52,7 +52,7 @@ public abstract class HorseController : MonoBehaviour
         if (!exhaustion)
         {
             exhaustion = true;
-            yield return new WaitForSeconds((60 - horse.Data.intelligence));
+            yield return new WaitForSeconds((60 - horse.Data.intelligence * 0.5f));
             leastStamina = horse.Data.stamina * 0.5f;
             exhaustion = false;
         }

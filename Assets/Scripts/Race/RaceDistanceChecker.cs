@@ -12,7 +12,7 @@ public class RaceDistanceChecker : MonoBehaviour
     {
         for(int i = 0; i < checkPoints.Count; i += 2)
         {
-            totalDistance += Vector3.SqrMagnitude(checkPoints[i].position - checkPoints[i+1].position);
+            totalDistance += Vector3.SqrMagnitude(checkPoints[i].position - checkPoints[i+1].position) * 0.7f;
         }
         reverseTotalDistance = 1 / totalDistance;
     }

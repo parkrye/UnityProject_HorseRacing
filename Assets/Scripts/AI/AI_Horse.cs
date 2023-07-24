@@ -13,8 +13,9 @@ public class AI_Horse : HorseController
 
     [SerializeField] float wallDistance;
     [SerializeField] public float speed;
-    [SerializeField] bool start;
-    [SerializeField] int turn, spurt;
+    [SerializeField] bool start, spurt;
+    [SerializeField] public bool goalIn;
+    [SerializeField] int turn;
 
     [SerializeField] Vector3 rotaDir, sideDir, turnDir;
     [SerializeField] Vector3 leftSight, fowardSight, rightSight;
@@ -22,24 +23,15 @@ public class AI_Horse : HorseController
     [ContextMenu("Setting")]
     public override void Initialize()
     {
-        RaceSetting();
+        DataSetting();
         base.Initialize();
     }
 
-    void RaceSetting()
+    void DataSetting()
     {
-        spurt = 0;
-        switch (strategy)
-        {
-            case Strategy.Runway:
-                break;
-            case Strategy.Front:
-                break;
-            case Strategy.Stalker:
-                break;
-            case Strategy.Closer:
-                break;
-        }
+        gameObject.name = horse.Data.horseName;
+        goalIn = false;
+        spurt = false;
         slipStream = 0;
         wallDistance = horse.Data.intelligence * 2f;
         leastStamina = horse.Data.stamina;
@@ -66,7 +58,9 @@ public class AI_Horse : HorseController
 
         while (true)
         {
+            SpurtCheck();
             CheckWay();
+            CalculateSpeed();
             CheckSideDistance();
             SetAnimatiton();
             yield return null;
@@ -83,53 +77,65 @@ public class AI_Horse : HorseController
             rotaDir.y = transform.position.y;
         }
         turnDir = Vector3.Lerp(transform.forward, rotaDir, Time.deltaTime);
+    }
 
-        switch (strategy)
+    void CalculateSpeed()
+    {
+        if (goalIn)
+            SpeedDown();
+        else if(leastStamina <= 0f)
         {
-            case Strategy.Runway:
-                if (spurt >= 4)
-                {
-                    speed = horse.Data.speed;
+            speed = horse.Data.speed * 0.1f;
+        }
+        else
+        {
+            switch (strategy)
+            {
+                case Strategy.Runway:
+                    if (spurt)
+                    {
+                        speed = horse.Data.speed;
+                        break;
+                    }
+                    if (rank <= 1)
+                        SpeedDown();        // 1위라면 감속
+                    else if (rank > 1)
+                        SpeedUp();          // 2위 이하라면 가속
                     break;
-                }
-                if (rank <= + spurt + 1) 
-                    SpeedDown();        // 1위라면 감속
-                else if (rank > 1) 
-                    SpeedUp();          // 2위 이하라면 가속
-                break;
-            case Strategy.Front:
-                if (spurt >= 3)
-                {
-                    speed = horse.Data.speed;
+                case Strategy.Front:
+                    if (spurt)
+                    {
+                        speed = horse.Data.speed;
+                        break;
+                    }
+                    if (rank <= raceController.raceSetting.strategy[0] + 1)
+                        SpeedDown();        // 도주보다 빨라지면 감속
+                    else
+                        SpeedUp();          // 그 외에 가속
                     break;
-                }
-                if (rank <= raceController.strategy[0] + spurt + 1)
-                    SpeedDown();        // 도주보다 빨라지면 감속
-                else
-                    SpeedUp();          // 그 외에 가속
-                break;
-            case Strategy.Stalker:
-                if (spurt >= 2)
-                {
-                    speed = horse.Data.speed;
+                case Strategy.Stalker:
+                    if (spurt)
+                    {
+                        speed = horse.Data.speed;
+                        break;
+                    }
+                    if (rank <= raceController.raceSetting.strategy[0] + raceController.raceSetting.strategy[1] + 1)
+                        SpeedDown();        // 선행보다 빨라지면 감속
+                    else
+                        SpeedUp();          // 그 외에 가속
                     break;
-                }
-                if (rank <= raceController.strategy[0] + raceController.strategy[1] + spurt + 1)
-                    SpeedDown();        // 선행보다 빨라지면 감속
-                else
-                    SpeedUp();          // 그 외에 가속
-                break;
-            case Strategy.Closer:
-                if (spurt >= 1)
-                {
-                    speed = horse.Data.speed;
+                case Strategy.Closer:
+                    if (spurt)
+                    {
+                        speed = horse.Data.speed;
+                        break;
+                    }
+                    if (rank <= raceController.raceSetting.strategy[0] + raceController.raceSetting.strategy[1] + raceController.raceSetting.strategy[2] + 1)
+                        SpeedDown();        // 선입보다 빨라지면 감속
+                    else
+                        SpeedUp();          // 그 외에 가속
                     break;
-                }
-                if (rank <= raceController.strategy[0] + raceController.strategy[1] + raceController.strategy[2] + spurt + 1)
-                    SpeedDown();        // 선입보다 빨라지면 감속
-                else
-                    SpeedUp();          // 그 외에 가속
-                break;
+            }
         }
 
         moveDir = transform.forward * (speed + 1f);
@@ -137,18 +143,18 @@ public class AI_Horse : HorseController
 
     void SpeedUp()
     {
-        if (speed < horse.Data.speed)
+        if (speed < horse.Data.speed * 0.8f)
             speed += horse.Data.power * Time.deltaTime;
         else
-            speed = horse.Data.speed;
+            speed = horse.Data.speed * 0.8f;
     }
 
     void SpeedDown()
     {
-        if (speed > 0f)
+        if (speed > horse.Data.speed * 0.1f)
             speed -= Time.deltaTime;
         else
-            speed = 0f;
+            speed = horse.Data.speed * 0.1f;
     }
 
     void CheckSideDistance()
@@ -174,7 +180,7 @@ public class AI_Horse : HorseController
         {
             if (frontChecker.IsHorse)
             {
-                if(raceController.isLeftRound)
+                if(raceController.raceSetting.isLeftRound)
                 {
                     sideDir = 0.2f * horse.Data.intelligence * transform.right;
                     turn = 1;
@@ -228,6 +234,29 @@ public class AI_Horse : HorseController
         horseAnimator.SetFloat("Side", turnAnimValue);
     }
 
+    void SpurtCheck()
+    {
+        switch (strategy)
+        {
+            case Strategy.Runway:
+                if (totalMoveDistance >= raceController.raceDistanceChecker.totalDistance * 0.95f)
+                    spurt = true;
+                break;
+            case Strategy.Front:
+                if (totalMoveDistance >= raceController.raceDistanceChecker.totalDistance * 0.9f)
+                    spurt = true;
+                break;
+            case Strategy.Stalker:
+                if (totalMoveDistance >= raceController.raceDistanceChecker.totalDistance * 0.9f)
+                    spurt = true;
+                break;
+            case Strategy.Closer:
+                if (totalMoveDistance >= raceController.raceDistanceChecker.totalDistance * 0.8f)
+                    spurt = true;
+                break;
+        }
+    }
+
     protected override IEnumerator FRoutine()
     {
         while (!start)
@@ -263,15 +292,9 @@ public class AI_Horse : HorseController
             {
                 StartCoroutine(ExhaustionRoutine());
                 leastStamina = 0f;
-                speed = 0f;
             }
             yield return new WaitForSeconds(1f);
         }
-    }
-
-    public void Spurt()
-    {
-        spurt++;
     }
 
     void OnDrawGizmos()
