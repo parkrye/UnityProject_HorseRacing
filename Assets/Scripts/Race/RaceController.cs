@@ -22,4 +22,9 @@ public class RaceController : MonoBehaviour
         raceCameraController.Initialize();
         goalLine.Initialize();
     }
+
+    public void StartRace()
+    {
+        startGate.startRace = true;
+    }
 }
