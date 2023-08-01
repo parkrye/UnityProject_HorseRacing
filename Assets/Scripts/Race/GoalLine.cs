@@ -32,6 +32,10 @@ public class GoalLine : MonoBehaviour
             {
                 aI_Horse.goalIn = true;
                 horseQueue.Enqueue((aI_Horse, time));
+                if(horseQueue.Count == 1 )
+                {
+                    raceController.CheckBatting(aI_Horse.raceNum);
+                }
                 Debug.Log((aI_Horse.name, time));
             }
         }

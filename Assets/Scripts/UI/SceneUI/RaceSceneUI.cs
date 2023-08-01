@@ -29,7 +29,7 @@ public class RaceSceneUI : SceneUI
         {
             for(int i = 0; i < distanceCheckers.Count; i++)
             {
-                distanceCheckers[i].anchoredPosition = new Vector2(1600f * (raceController.Horses[i].totalMoveDistance + raceController.Horses[i].inZoneMoveDistance) * raceController.raceDistanceChecker.reverseTotalDistance, distanceCheckers[i].anchoredPosition.y);
+                distanceCheckers[i].anchoredPosition = new Vector2(1100f * (raceController.Horses[i].totalMoveDistance + raceController.Horses[i].inZoneMoveDistance) * raceController.raceDistanceChecker.reverseTotalDistance, distanceCheckers[i].anchoredPosition.y);
             }
             yield return null;
         }

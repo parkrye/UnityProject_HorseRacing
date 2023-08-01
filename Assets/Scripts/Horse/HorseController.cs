@@ -3,7 +3,8 @@ using UnityEngine;
 
 public abstract class HorseController : MonoBehaviour
 {
-    [Header ("Horse Controller")]
+    [Header("Horse Controller")]
+    [SerializeField] public int raceNum;
     [SerializeField] protected Rigidbody rb;
     [SerializeField] public Horse horse;
     [SerializeField] protected Animator horseAnimator, riderAnimator;

@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
         dataObj.name = "DataManager";
         dataObj.transform.parent = transform;
         dataManager = dataObj.AddComponent<DataManager>();
+        dataManager.Initialize();
 
         GameObject uiObj = new GameObject();
         uiObj.name = "UIManager";

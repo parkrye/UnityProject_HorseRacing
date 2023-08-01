@@ -85,7 +85,7 @@ public class AI_Horse : HorseController
             SpeedDown();
         else if(leastStamina <= 0f)
         {
-            speed = horse.Data.speed * 0.1f;
+            speed = horse.Data.speed * 0.5f;
         }
         else
         {
@@ -151,10 +151,10 @@ public class AI_Horse : HorseController
 
     void SpeedDown()
     {
-        if (speed > horse.Data.speed * 0.1f)
+        if (speed > horse.Data.speed * 0.5f)
             speed -= Time.deltaTime;
         else
-            speed = horse.Data.speed * 0.1f;
+            speed = horse.Data.speed * 0.5f;
     }
 
     void CheckSideDistance()

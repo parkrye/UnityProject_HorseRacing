@@ -256,7 +256,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8209627992279543206}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2101466606564721969}
+        m_TargetAssemblyTypeName: BattingEntry, Assembly-CSharp
+        m_MethodName: OnBattingButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8209627992857203390
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8209627993440802304}
+  - component: {fileID: 2101466606564721969}
   m_Layer: 5
   m_Name: BattingEntry
   m_TagString: Untagged
@@ -875,6 +888,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 250}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &2101466606564721969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8209627993440802305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3462bc9744bb4bb42a6ac670e6e0edde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battingController: {fileID: 0}
+  batPoint: 0
 --- !u!1 &8209627993806351510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,14 +1081,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 3
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 2
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 3
   m_RegexValue: 
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
@@ -1085,7 +1112,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2101466606564721969}
+        m_TargetAssemblyTypeName: BattingEntry, Assembly-CSharp
+        m_MethodName: OnBattingPointInputed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []

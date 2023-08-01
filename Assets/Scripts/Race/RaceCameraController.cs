@@ -21,6 +21,20 @@ public class RaceCameraController : MonoBehaviour
         SetCamera(0);
     }
 
+    public void SetTarget(int target)
+    {
+        if (target < 0 || target >= raceController.Horses.Count)
+            return;
+        targetNum = target;
+
+        cameras[0].Follow = raceController.Horses[targetNum].transform;
+        cameras[0].LookAt = raceController.Horses[targetNum].transform;
+        cameras[1].Follow = raceController.Horses[targetNum].head;
+        cameras[1].LookAt = raceController.Horses[targetNum].chest;
+        cameras[2].Follow = raceController.Horses[targetNum].transform;
+        cameras[2].LookAt = raceController.Horses[targetNum].transform;
+    }
+
     public void SetCamera(int index)
     {
         if (index < 0 || index >= cameras.Count)

@@ -313,6 +313,8 @@ MonoBehaviour:
   rankWeight: -1
   rankZone: {fileID: 0}
   rank: 0
+  totalMoveDistance: 0
+  inZoneMoveDistance: 0
   moveDir: {x: 0, y: 0, z: 0}
   raceController: {fileID: 0}
   frontChecker: {fileID: 8944960899357122699}
@@ -321,8 +323,9 @@ MonoBehaviour:
   wallDistance: 0
   speed: 0
   start: 0
-  turn: 0
   spurt: 0
+  goalIn: 0
+  turn: 0
   rotaDir: {x: 0, y: 0, z: 0}
   sideDir: {x: 0, y: 0, z: 0}
   turnDir: {x: 0, y: 0, z: 0}
@@ -337,7 +340,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6792858629544528804}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 2
   m_AngularDrag: 4
   m_UseGravity: 1

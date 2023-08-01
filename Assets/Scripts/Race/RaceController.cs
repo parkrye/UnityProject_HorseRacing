@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class RaceController : MonoBehaviour
 {
+    [SerializeField] BattingController battingController;
+
     [SerializeField] List<AI_Horse> horses;
     public List<AI_Horse> Horses { get { return horses; } }
 
@@ -13,6 +15,8 @@ public class RaceController : MonoBehaviour
     [SerializeField] public RaceDistanceChecker raceDistanceChecker;
     [SerializeField] public GoalLine goalLine;
 
+    [SerializeField] GameObject raceSceneUI;
+
     public void Initialize()
     {
         raceSetting.Initialize();
@@ -21,10 +25,18 @@ public class RaceController : MonoBehaviour
         raceDistanceChecker.Initialize();
         raceCameraController.Initialize();
         goalLine.Initialize();
+        raceSceneUI.SetActive(false);
     }
 
-    public void StartRace()
+    public void StartRace(int batEntry)
     {
+        raceSceneUI.SetActive(true);
+        raceCameraController.SetTarget(batEntry);
         startGate.startRace = true;
+    }
+
+    public void CheckBatting(int entryNum)
+    {
+        battingController.TakeDividend(entryNum);
     }
 }
