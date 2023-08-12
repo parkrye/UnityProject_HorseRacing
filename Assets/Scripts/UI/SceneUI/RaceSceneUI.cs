@@ -29,7 +29,8 @@ public class RaceSceneUI : SceneUI
         {
             for(int i = 0; i < distanceCheckers.Count; i++)
             {
-                distanceCheckers[i].anchoredPosition = new Vector2(1100f * (raceController.Horses[i].totalMoveDistance + raceController.Horses[i].inZoneMoveDistance) * raceController.raceDistanceChecker.reverseTotalDistance, distanceCheckers[i].anchoredPosition.y);
+                if (distanceCheckers[i].anchoredPosition.x < 1500f)
+                    distanceCheckers[i].anchoredPosition = new Vector2(1100f * (raceController.Horses[i].totalMoveDistance + raceController.Horses[i].inZoneMoveDistance) * raceController.raceDistanceChecker.reverseTotalDistance, distanceCheckers[i].anchoredPosition.y);
             }
             yield return null;
         }

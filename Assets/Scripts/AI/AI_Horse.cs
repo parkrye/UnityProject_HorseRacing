@@ -11,9 +11,9 @@ public class AI_Horse : HorseController
     [SerializeField] public Strategy strategy;
     [SerializeField] bool drawGizmo;
 
-    [SerializeField] float wallDistance;
+    [SerializeField] float wallDistance, spurtDistance;
     [SerializeField] public float speed;
-    [SerializeField] bool start, spurt;
+    [SerializeField] bool start, decisionSpurt, spurt;
     [SerializeField] public bool goalIn;
     [SerializeField] int turn;
 
@@ -151,10 +151,10 @@ public class AI_Horse : HorseController
 
     void SpeedDown()
     {
-        if (speed > horse.Data.speed * 0.5f)
-            speed -= Time.deltaTime;
+        if (speed > horse.Data.speed * 0.6f)
+            speed -= Time.deltaTime * Time.deltaTime;
         else
-            speed = horse.Data.speed * 0.5f;
+            speed = horse.Data.speed * 0.6f;
     }
 
     void CheckSideDistance()
@@ -166,12 +166,12 @@ public class AI_Horse : HorseController
         if (Physics.Raycast(transform.position, transform.right, out RaycastHit rightHit, wallDistance, LayerMask.GetMask("Wall")))
             rightDistance = rightHit.distance;
 
-        if (leftDistance > rightDistance && rightDistance < 3f)
+        if (leftDistance > rightDistance && rightDistance < (leftDistance + rightDistance) * 0.3f)
         {
             sideDir = 0.2f * horse.Data.intelligence * -transform.right;
             turn = -1;
         }
-        else if (leftDistance < rightDistance && leftDistance < 3f)
+        else if (leftDistance < rightDistance && leftDistance < (leftDistance + rightDistance) * 0.3f)
         {
             sideDir = 0.2f * horse.Data.intelligence * transform.right;
             turn = 1;
@@ -236,24 +236,25 @@ public class AI_Horse : HorseController
 
     void SpurtCheck()
     {
-        switch (strategy)
+        if (!decisionSpurt)
         {
-            case Strategy.Runway:
-                if (totalMoveDistance >= raceController.raceDistanceChecker.totalDistance * 0.95f)
-                    spurt = true;
-                break;
-            case Strategy.Front:
-                if (totalMoveDistance >= raceController.raceDistanceChecker.totalDistance * 0.9f)
-                    spurt = true;
-                break;
-            case Strategy.Stalker:
-                if (totalMoveDistance >= raceController.raceDistanceChecker.totalDistance * 0.9f)
-                    spurt = true;
-                break;
-            case Strategy.Closer:
-                if (totalMoveDistance >= raceController.raceDistanceChecker.totalDistance * 0.8f)
-                    spurt = true;
-                break;
+            if (totalMoveDistance >= raceController.raceDistanceChecker.totalDistance * 0.5f)
+            {
+                float staminaConsumedPortion = (horse.Data.stamina - leastStamina) / horse.Data.stamina;
+                spurtDistance = totalMoveDistance / (staminaConsumedPortion * 2f);
+                float intelligenceModifier = Mathf.Abs(horse.Data.intelligence - 20f) * 0.01f;
+                spurtDistance += spurtDistance * Random.Range(-intelligenceModifier, intelligenceModifier);
+                if (spurtDistance >= raceController.raceDistanceChecker.totalDistance * 0.9f)
+                    spurtDistance = raceController.raceDistanceChecker.totalDistance * 0.9f;
+                decisionSpurt = true;
+            }
+        }
+        else
+        {
+            if(totalMoveDistance >= spurtDistance)
+            {
+                spurt = true;
+            }
         }
     }
 
@@ -273,6 +274,7 @@ public class AI_Horse : HorseController
     {
         rb.AddForce(moveDir + sideDir + Vector3.up, ForceMode.Acceleration);
         transform.LookAt(turnDir + transform.position);
+        transform.localEulerAngles = new Vector3(0f, transform.localEulerAngles.y, 0f);
     }
 
     protected override IEnumerator StaminaComsume()
@@ -281,7 +283,7 @@ public class AI_Horse : HorseController
             yield return null;
         while (true)
         {
-            float consume = (speed - horse.Data.intelligence * 0.1f) * 0.015f;
+            float consume = ((speed * 0.1f) * (speed * 0.1f) - horse.Data.intelligence * 0.1f) * 0.06f;
             if (turn != 0)
                 consume += horse.Data.speed * 0.01f;
             consume = (consume < 0.1f ? 0.1f : consume);
