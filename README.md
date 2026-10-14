@@ -2,6 +2,10 @@
 
 경마 시뮬레이션 (Unity · URP, 2023). 레이스 전에 말 한 마리에 배팅하고, AI 말들이 각자의 능력치와 각질로 달리는 레이스를 지켜본다.
 
+## 영상
+
+[![플레이 영상](https://img.youtube.com/vi/feLuDeTRIGI/hqdefault.jpg)](https://youtu.be/feLuDeTRIGI)
+
 ## 말
 
 - 능력치: 속도 · 스태미나 · 파워 · 지능 (말마다 기본값에서 ±10% 무작위)
